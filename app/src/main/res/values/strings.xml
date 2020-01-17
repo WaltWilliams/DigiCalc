@@ -1,0 +1,38 @@
+<resources>
+    <!-- Tab titles -->
+    <string name="app_name">DigiCalc</string>
+    <string name="tab_text_1">Add Binary</string>
+    <string name="tab_text_2">Add Octal</string>
+    <string name="tab_text_3">Add Hex</string>
+    <string name="convert">Convert</string>
+
+
+    <!-- Text in views -->
+    <string name="instruct_hex">Enter the digits for your hexadecimal number in the fields and select your operator.</string>
+    <string name="instruct_oct">Enter the digits for your octal number in the fields and select your operator.</string>
+    <string name="instruct_bin">Enter the digits for your binary number in the fields and select your operator.</string>
+    <string name="instruct_convert">Enter your number in the field below and select the number type from the dropdown menu.</string>
+    <string name="hex_hint">Enter Hexadecimal Value Here</string>
+    <string name="oct_hint">Enter Octal Value Here</string>
+    <string name="bin_hint">Enter Binary Value Here</string>
+    <string name="execute">Execute</string>
+    <string name="answer">Answer</string>
+    <string name="blank"> </string>
+    <string name="type">Number Type</string>
+
+    <!-- Operator dropdown -->
+    <string-array name="operators">
+        <item>Add</item>
+        <item>Sub</item>
+        <item>Mult</item>
+        <item>Div</item>
+    </string-array>
+
+    <!-- Operator dropdown -->
+    <string-array name="number_base">
+        <item>bin</item>
+        <item>Octal</item>
+        <item>Hex</item>
+    </string-array>
+
+</resources>
