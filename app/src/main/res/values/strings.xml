@@ -1,38 +1,102 @@
 <resources>
     <!-- Tab titles -->
     <string name="app_name">DigiCalc</string>
-    <string name="tab_text_1">Add Binary</string>
-    <string name="tab_text_2">Add Octal</string>
-    <string name="tab_text_3">Add Hex</string>
-    <string name="convert">Convert</string>
+    <string name="tab_text_0">Home</string>
+    <string name="tab_text_1">Bin</string>
+    <string name="tab_text_2">Octal</string>
+    <string name="tab_text_3">Hex</string>
+    <string name="convert">Conv.</string>
 
 
     <!-- Text in views -->
-    <string name="instruct_hex">Enter the digits for your hexadecimal number in the fields and select your operator.</string>
-    <string name="instruct_oct">Enter the digits for your octal number in the fields and select your operator.</string>
-    <string name="instruct_bin">Enter the digits for your binary number in the fields and select your operator.</string>
     <string name="instruct_convert">Enter your number in the field below and select the number type from the dropdown menu.</string>
+    <string name="value">Enter The Value You Want To Convert.</string>
     <string name="hex_hint">Enter Hexadecimal Value Here</string>
     <string name="oct_hint">Enter Octal Value Here</string>
     <string name="bin_hint">Enter Binary Value Here</string>
+    <string name="bin_answ">Binary</string>
+    <string name="oct_answ">Octal</string>
+    <string name="hex_answ">Hexadecimal</string>
     <string name="execute">Execute</string>
     <string name="answer">Answer</string>
     <string name="blank"> </string>
     <string name="type">Number Type</string>
+    <string name="clear">Clr</string>
+    <string name="back">&lt;</string>
+    <string name="forward">&gt;</string>
+    <string name="field1">Field 1</string>
+    <string name="field2">Field 2</string>
 
     <!-- Operator dropdown -->
     <string-array name="operators">
         <item>Add</item>
-        <item>Sub</item>
         <item>Mult</item>
         <item>Div</item>
     </string-array>
 
-    <!-- Operator dropdown -->
+    <!-- Base dropdown -->
     <string-array name="number_base">
-        <item>bin</item>
+        <item>Decimal</item>
+        <item>Bin</item>
         <item>Octal</item>
         <item>Hex</item>
     </string-array>
 
+    <!-- Button text -->
+    <string name="del">Del</string>
+    <string name="minus">\u2014</string>
+    <string name="zero">0</string>
+    <string name="one">1</string>
+    <string name="two">2</string>
+    <string name="three">3</string>
+    <string name="four">4</string>
+    <string name="five">5</string>
+    <string name="six">6</string>
+    <string name="seven">7</string>
+    <string name="eight">8</string>
+    <string name="nine">9</string>
+    <string name="a">A</string>
+    <string name="b">B</string>
+    <string name="c">C</string>
+    <string name="d">D</string>
+    <string name="e">E</string>
+    <string name="f">F</string>
+
+
+    <!-- HomeTab content -->
+    <string name="home">
+        <![CDATA[
+        <h2>Quick tips on using DigiCalc</h2>
+        <p>
+        DigiCalc will calculate 64bit binary, octal and hexadecimal values.
+        </p>
+        <p>
+        Navigate by tapping on the desired tab or swipe in the proper direction.
+        </p>
+        <p>
+        Select your desired operation, \"Add\", \"Mult\", or \"Div\" from the drop down menu.
+        </p>
+        <p>
+        Subtraction is done in the \"Add\" mode, by placing a negative sign in front of the desired value.
+        See directly below.
+        </p>
+        <p>
+        The negative sign key is a toggle. The negative sign key on the keypad is designed so that when you tap
+        on it once it will place a negative sign on the far left end of the value. Tapping on it again
+        will remove it. Regardless of the cursor\'s position in the value.
+        </p>
+        <p>
+        To correct a typo, tap on the value at the desired position then, if needed, use the arrow keys,
+        \"&lt;\" or \"&gt;\", to position the cursor to just behind the digit to be changed, then tap \"Del\" key to
+        delete <i>that</i> digit, then tap on the correct value.
+        </p>
+        <p>
+         Testing was performed using two unique sources for solutions which were compared against the calculation algorithm\'s
+         output. Even though numerous hours were spent testing, there is bound to be a pair of values that will produce
+         erroneous results. We would be <u>VERY</u> interested in having the pair of values to troubleshoot and test with.
+         Please send the pair of values, which base, arithmetic mode, and the results you\'re getting to:
+         <b>woodlandcoders@gmail.com</b>. For quick identification the subject should read: \"Bad DigiCalc Results\".
+        </p>
+        ]]>
+    </string>
 </resources>

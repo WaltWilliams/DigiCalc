@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/convET"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="20dp"
+        android:clickable="true"
+        android:cursorVisible="true"
+        android:digits="-01"
+        android:enabled="true"
+        android:hint="@string/value"
+        android:inputType="number"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:autofillHints=""
+        android:focusable="true" />
+
+    <Spinner
+        android:id="@+id/convSP"
+        android:layout_width="125dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/colorLight"
+        app:layout_constraintStart_toStartOf="@+id/convET"
+        app:layout_constraintTop_toBottomOf="@+id/convET" />
+
+    <Button
+        android:id="@+id/convBtn"
+        android:layout_width="125dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="10dp"
+        android:backgroundTint="@color/colorDevilRed"
+        android:text="@string/execute"
+        android:textColor="@android:color/background_light"
+        app:layout_constraintEnd_toEndOf="@+id/convET"
+        app:layout_constraintTop_toBottomOf="@+id/convET" />
+
+    <TextView
+        android:id="@+id/convLabel1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:hint="@string/bin_answ"
+        app:layout_constraintStart_toStartOf="@+id/convSP"
+        app:layout_constraintTop_toBottomOf="@+id/convSP" />
+
+    <TextView
+        android:id="@+id/convTV1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/colorLight"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@+id/convBtn"
+        app:layout_constraintStart_toStartOf="@+id/convLabel1"
+        app:layout_constraintTop_toBottomOf="@+id/convLabel1" />
+
+    <TextView
+        android:id="@+id/convLabel2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:hint="@string/oct_answ"
+        app:layout_constraintStart_toStartOf="@+id/convTV1"
+        app:layout_constraintTop_toBottomOf="@+id/convTV1" />
+
+    <TextView
+        android:id="@+id/convTV2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/colorLight"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@+id/convTV1"
+        app:layout_constraintStart_toStartOf="@+id/convLabel2"
+        app:layout_constraintTop_toBottomOf="@+id/convLabel2" />
+
+    <TextView
+        android:id="@+id/convLabel3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:hint="@string/hex_answ"
+        app:layout_constraintStart_toStartOf="@+id/convTV2"
+        app:layout_constraintTop_toBottomOf="@+id/convTV2" />
+
+    <TextView
+        android:id="@+id/convTV3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/colorLight"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@+id/convTV2"
+        app:layout_constraintStart_toStartOf="@+id/convLabel3"
+        app:layout_constraintTop_toBottomOf="@+id/convLabel3" />
+
+    <FrameLayout
+        android:id="@+id/convFrame"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+    </FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

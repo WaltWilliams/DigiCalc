@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/DigiCalc.iml" filepath="$PROJECT_DIR$/DigiCalc.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/DigiCalc.iml" filepath="$PROJECT_DIR$/DigiCalc.iml" group="DigiCalc" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="DigiCalc/app" />
     </modules>
   </component>
 </project>

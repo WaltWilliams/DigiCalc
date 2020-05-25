@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <EditText
+        android:id="@+id/octEditText1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="20dp"
+        android:digits="-12345670"
+        android:ems="10"
+        android:hint="@string/oct_hint"
+        android:importantForAutofill="no"
+        android:inputType="numberSigned"
+        android:maxLength="32"
+        android:textColor="@android:color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/octEditText2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/octEditText1"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="20dp"
+        android:digits="-12345670"
+        android:ems="10"
+        android:hint="@string/oct_hint"
+        android:importantForAutofill="no"
+        android:inputType="number"
+        android:maxLength="32"
+        android:textColor="@android:color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/octEditText1" />
+
+    <Spinner
+        android:id="@+id/octSp"
+        android:layout_width="125dp"
+        android:layout_height="75dp"
+        android:layout_below="@+id/octEditText2"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/colorLight"
+        android:theme="@style/SpinnerStyle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/octEditText2" />
+
+    <TextView
+        android:id="@+id/octAnswer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/octButton"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:background="@color/colorLight"
+        android:ems="10"
+        android:hint="@string/answer"
+        android:importantForAutofill="no"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/octSp" />
+
+    <Button
+        android:id="@+id/octButton"
+        android:layout_width="125dp"
+        android:layout_height="75dp"
+        android:layout_below="@+id/octEditText2"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="20dp"
+        android:backgroundTint="@color/colorDevilRed"
+        android:text="@string/execute"
+        android:textColor="@color/colorYellow"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/octEditText2" />
+
+    <Button
+        android:id="@+id/octClearFieldButton"
+        android:layout_width="50dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="45dp"
+        android:backgroundTint="@color/colorDevilRed"
+        android:text="@string/clear"
+        android:textColor="@color/colorYellow"
+        app:layout_constraintEnd_toStartOf="@+id/octButton"
+        app:layout_constraintStart_toEndOf="@+id/octSp"
+        app:layout_constraintTop_toBottomOf="@+id/octEditText2" />
+
+    <FrameLayout
+        android:id="@+id/octKeyFrame"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+    </FrameLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

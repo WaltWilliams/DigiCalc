@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HexMathTab">
+
+
+    <EditText
+        android:id="@+id/hexEditText1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="20dp"
+        android:clickable="true"
+        android:cursorVisible="true"
+        android:digits="-1234567890ABCDEF"
+        android:editable="true"
+        android:ems="10"
+        android:hint="@string/hex_hint"
+        android:importantForAutofill="no"
+        android:inputType="none"
+        android:maxLength="32"
+        android:textColor="@android:color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/hexEditText2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/hexEditText1"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="10dp"
+        android:clickable="true"
+        android:cursorVisible="true"
+        android:digits="-1234567890ABCDEF"
+        android:editable="true"
+        android:ems="10"
+        android:hint="@string/hex_hint"
+        android:importantForAutofill="no"
+        android:inputType="none"
+        android:maxLength="32"
+        android:textColor="@android:color/black"
+        app:layout_constraintEnd_toEndOf="@+id/hexEditText1"
+        app:layout_constraintStart_toStartOf="@+id/hexEditText1"
+        app:layout_constraintTop_toBottomOf="@+id/hexEditText1" />
+
+    <TextView
+        android:id="@+id/hexAnswer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/hexButton"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="20dp"
+        android:background="@color/colorLight"
+        android:ems="10"
+        android:hint="@string/answer"
+        android:importantForAutofill="no"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@+id/hexButton"
+        app:layout_constraintStart_toStartOf="@+id/hexSp"
+        app:layout_constraintTop_toBottomOf="@+id/hexSp" />
+
+    <Spinner
+        android:id="@+id/hexSp"
+        android:layout_width="125dp"
+        android:layout_height="75dp"
+        android:layout_below="@+id/binEditText2"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="10dp"
+        android:background="@color/colorLight"
+        android:theme="@style/SpinnerStyle"
+        app:layout_constraintStart_toStartOf="@+id/hexEditText2"
+        app:layout_constraintTop_toBottomOf="@+id/hexEditText2" />
+
+    <Button
+        android:id="@+id/hexButton"
+        android:layout_width="125dp"
+        android:layout_height="75dp"
+        android:layout_below="@+id/hexEditText2"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="10dp"
+        android:backgroundTint="@color/colorDevilRed"
+        android:text="@string/execute"
+        android:textColor="@color/colorYellow"
+        app:layout_constraintEnd_toEndOf="@+id/hexEditText2"
+        app:layout_constraintTop_toBottomOf="@+id/hexEditText2" />
+
+    <Button
+        android:id="@+id/hexClearFieldButton"
+        android:layout_width="50dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="45dp"
+        android:backgroundTint="@color/colorDevilRed"
+        android:text="@string/clear"
+        android:textColor="@color/colorYellow"
+        app:layout_constraintEnd_toStartOf="@+id/hexButton"
+        app:layout_constraintStart_toEndOf="@+id/hexSp"
+        app:layout_constraintTop_toBottomOf="@+id/hexEditText2" />
+
+
+    <FrameLayout
+        android:id="@+id/hexKeyFrame"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
