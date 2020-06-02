@@ -17,7 +17,7 @@ public class Base16Maths {
     private Base16Maths() {
     }
 
-    CommonUtils cu = CommonUtils.getInstance();
+    CommonUtils commonUtils = CommonUtils.getInstance();
     ///////////////////////////////////////////////////////////////////////////////////////////////
     // Hexadecimal math ///////////////////////////////////////////////////////////////////////////
     protected String hexMath(String value1, String value2, String operatorFromUI){
@@ -31,7 +31,7 @@ public class Base16Maths {
         // 4) Record the length of value2 as the divisor length.
         // 5) If either input was a negative zero the negative record is reset to false in that its not negative. 0 instead of -0
         // 6) Match length both input values by padding the shorter value with leading zeros.
-        String[] values = cu.prepValues(value1, value2);
+        String[] values = commonUtils.prepValues(value1, value2);
 
         // Making a boolean from the negative record from prepValues.
         boolean isOneNeg = false;
@@ -65,7 +65,7 @@ public class Base16Maths {
             if(isOneLarger && isOneNeg && !isTwoNeg){
                 String sixteenCompx = deriveSixteensCompliment(values[0]);
                 // While converting to 16s compliment a digit might get dropped.
-                String sixteenComp = cu.padValue(sixteenCompx, values[1]);
+                String sixteenComp = commonUtils.padValue(sixteenCompx, values[1]);
                 result.insert(0, hexAdd(sixteenComp, values[1], true));
                 result.replace(0, result.length(), deriveSixteensCompliment(result.toString()));
                 result.insert(0, "-");
@@ -74,14 +74,14 @@ public class Base16Maths {
             if(isOneNeg && isTwoLarger && !isTwoNeg){
                 String sixteenCompx = deriveSixteensCompliment(values[0]);
                 // While converting to 16s compliment a digit might get dropped.
-                String sixteenComp = cu.padValue(sixteenCompx, values[1]);
+                String sixteenComp = commonUtils.padValue(sixteenCompx, values[1]);
                 result.insert(0, hexAdd(sixteenComp, values[1], true));
             }
             // State 4. Smaller positive  value - larger negative value.
             if(!isOneNeg && isTwoLarger && isTwoNeg){
                 String sixteenCompx = deriveSixteensCompliment(values[1]);
                 // While converting to 16s compliment a digit might get dropped.
-                String sixteenComp = cu.padValue(sixteenCompx, values[0]);
+                String sixteenComp = commonUtils.padValue(sixteenCompx, values[0]);
                 result.insert(0, hexAdd(values[0], sixteenComp, true));
                 result.replace(0, result.length(), deriveSixteensCompliment(result.toString()));
                 result.insert(0, "-");
@@ -90,20 +90,20 @@ public class Base16Maths {
             if(!isOneNeg && isOneLarger && isTwoNeg){
                 String sixteenCompx = deriveSixteensCompliment(values[1]);
                 // While converting to 16s compliment a digit might get dropped.
-                String sixteenComp = cu.padValue(sixteenCompx, values[0]);
+                String sixteenComp = commonUtils.padValue(sixteenCompx, values[0]);
                 result.insert(0, hexAdd(values[0], sixteenComp, true));
             }
         }
         else if(operatorFromUI.compareTo("Mult") == 0){
             result.insert(0, hexMult(values[0], values[1]));
-            result.replace(0, result.length(), cu.trimLeadingZeros(result.toString()));
+            result.replace(0, result.length(), commonUtils.trimLeadingZeros(result.toString()));
             if((isOneNeg & !isTwoNeg) | (!isOneNeg & isTwoNeg)){
                 result.insert(0, "-");
             }
         }
         else if(operatorFromUI.compareTo("Div") == 0){
             // Thou shalt not divide by zero
-            if(cu.isValueZero(values[1])){
+            if(commonUtils.isValueZero(values[1])){
                 return "Thou Shalt Divide By Zero!";
             }
             // The dividend needs to be larger that the divisor. If not
@@ -114,7 +114,7 @@ public class Base16Maths {
 
             // The third parameter is the length of the divisor derived from the "prepValues" method.
             result.insert(0, hexDiv(values[0], values[1], Integer.parseInt(values[4])));
-            result.replace(0, result.length(), cu.trimLeadingZeros(result.toString()));
+            result.replace(0, result.length(), commonUtils.trimLeadingZeros(result.toString()));
             if((isOneNeg & !isTwoNeg) | (!isOneNeg & isTwoNeg)){
                 result.insert(0, "-");
             }
@@ -275,7 +275,7 @@ public class Base16Maths {
         int carry = 0;
         // First setup a 2D array to hold the multiplied items.
         int s = 0;
-        int arr[][] = cu.createMultiArray(l);
+        int arr[][] = commonUtils.createMultiArray(l);
 
         // "i" steps through value2 from right to left.
         // "h" steps through value1 from right to left.
@@ -366,11 +366,11 @@ public class Base16Maths {
 
             // It was too big of a hassle to leave the divisor in its un-padded state
             // before entering this method.
-            StringBuilder divisorSB = new StringBuilder(cu.trimLeadingZeros(divisor));
+            StringBuilder divisorSB = new StringBuilder(commonUtils.trimLeadingZeros(divisor));
 
             int h = 0;
             for(int d = 0; d< divisorLength; d++){
-                h = h + getDecimalFromHex(cu.trimLeadingZeros(String.valueOf(divisorSB.charAt(d))));
+                h = h + getDecimalFromHex(commonUtils.trimLeadingZeros(String.valueOf(divisorSB.charAt(d))));
             }
 
             // So we that have made use of the trimming back divisor in the
@@ -414,7 +414,7 @@ public class Base16Maths {
 
                 // Creating an 8s compliment zero
                 StringBuilder ONE = new StringBuilder("1");
-                ONE.replace(0, ONE.length(), cu.padValue(ONE.toString(), remainder.toString()));
+                ONE.replace(0, ONE.length(), commonUtils.padValue(ONE.toString(), remainder.toString()));
                 ONE.replace(0, ONE.length(), deriveSixteensCompliment(ONE.toString()));
 
                 // Let the fun begin.
@@ -427,7 +427,7 @@ public class Base16Maths {
                     // This scalar will become part of the quotient.
                     StringBuilder divisorMultiple = new StringBuilder("F");
                     // Padding the divisorMultiple.
-                    divisorMultiple.replace(0, divisorMultiple.length(), cu.padValue(divisorMultiple.toString(), remainder.toString()));
+                    divisorMultiple.replace(0, divisorMultiple.length(), commonUtils.padValue(divisorMultiple.toString(), remainder.toString()));
                     //====================================================================================================
                     divisorSB.replace(0, divisorSB.length(), hexMult(divisorMultiple.toString(), tmpDivisor.toString()));
                     // The multiplication method leaves excess leading zeros. Lets trim them back.
@@ -459,7 +459,7 @@ public class Base16Maths {
                     }
 
                     // Append the quotient
-                    divisorMultiple.replace(0, divisorMultiple.length(), cu.trimLeadingZeros(divisorMultiple.toString()));
+                    divisorMultiple.replace(0, divisorMultiple.length(), commonUtils.trimLeadingZeros(divisorMultiple.toString()));
                     quotient.append(divisorMultiple.toString());
                     // Bring down the next value from the dividend and take out a leading zero.
                     remainder.append(dividendSB.charAt(0));
@@ -469,7 +469,7 @@ public class Base16Maths {
 
                 // picking up the last digit in the dividend.
                 StringBuilder divisorMultiple = new StringBuilder("F");
-                divisorMultiple.replace(0, divisorMultiple.length(), cu.padValue(divisorMultiple.toString(), remainder.toString()));
+                divisorMultiple.replace(0, divisorMultiple.length(), commonUtils.padValue(divisorMultiple.toString(), remainder.toString()));
 
                 divisorSB.replace(0, divisorSB.length(), hexMult(divisorMultiple.toString(), tmpDivisor.toString()));
                 // The multiplication method leaves excess leading zeros. Lets trim them back.
@@ -500,11 +500,11 @@ public class Base16Maths {
                 }
 
                 // Append the quotient
-                divisorMultiple.replace(0, divisorMultiple.length(), cu.trimLeadingZeros(divisorMultiple.toString()));
+                divisorMultiple.replace(0, divisorMultiple.length(), commonUtils.trimLeadingZeros(divisorMultiple.toString()));
                 quotient.append(divisorMultiple.toString());
 
-                remainder.replace(0, remainder.length(), cu.trimLeadingZeros(remainder.toString()));
-                results.insert(0, cu.trimLeadingZeros(quotient.toString()) + " R: " + cu.trimLeadingZeros(remainder.toString()));
+                remainder.replace(0, remainder.length(), commonUtils.trimLeadingZeros(remainder.toString()));
+                results.insert(0, commonUtils.trimLeadingZeros(quotient.toString()) + " R: " + commonUtils.trimLeadingZeros(remainder.toString()));
             }
         }
         return results.toString();
@@ -576,7 +576,7 @@ public class Base16Maths {
             result.insert(0, getHexFromDecimal(n));
             //result.replace(0, result.length(), result.toString());
         }
-        result.replace(0, result.length(), hexAdd(result.toString(), cu.padValue("1", result.toString()), false));
+        result.replace(0, result.length(), hexAdd(result.toString(), commonUtils.padValue("1", result.toString()), false));
 
         return result.toString();
     }

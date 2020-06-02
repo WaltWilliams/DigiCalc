@@ -1,6 +1,5 @@
 package com.woodlandcoders.digicalc;
 
-
 public class Base2Maths {
     private static Base2Maths mInstance;
 
@@ -15,7 +14,7 @@ public class Base2Maths {
     private Base2Maths() {
     }
 
-    CommonUtils cu = CommonUtils.getInstance();
+    CommonUtils commonUtils = CommonUtils.getInstance();
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // Binary math //////////////////////////////////////////////////////////////////////////////////////////////////
     protected String binMath(String value1, String value2, String operatorFromUI){
@@ -29,9 +28,9 @@ public class Base2Maths {
         // 4) Record the length of value2 as the divisor length.
         // 5) If either input was a negative zero the negative record is reset to false in that its not negative. 0 instead of -0
         // 6) Match length both input values by padding the shorter value with leading zeros.
-        String[] values = cu.prepValues(value1, value2);
+        String[] values = commonUtils.prepValues(value1, value2);
 
-        // Making a boolean from the negative record from prepValues.
+        // Making a boolean from the negative record from prepValues. Index 2 and 3
         boolean isOneNeg = false;
         boolean isTwoNeg = false;
         if(values[2].compareTo("1") == 0){
@@ -59,7 +58,7 @@ public class Base2Maths {
             // It doesn't matter which larger.
             if((!isOneNeg & !isTwoNeg) | (isOneNeg & isTwoNeg)){
                 result.insert(0, binAdd(values[0], values[1], false));
-                result.replace(0, result.length(), cu.trimLeadingZeros(result.toString()));
+                result.replace(0, result.length(), commonUtils.trimLeadingZeros(result.toString()));
                 if((isOneNeg & isTwoNeg)){
                     result.insert(0, "-");
                 }
@@ -72,37 +71,37 @@ public class Base2Maths {
             if(isOneNeg && !isTwoNeg && isOneLarger){
                 String twosCompx = deriveTwosCompliment(values[0]);
                 // While converting to 2s compliment a digit might get dropped.
-                String twosComp = cu.padValue(twosCompx, values[1]);
+                String twosComp = commonUtils.padValue(twosCompx, values[1]);
                 result.insert(0, binAdd(twosComp, values[1], true));
                 result.replace(0, result.length(), deriveTwosCompliment(result.toString()));
-                result.replace(0, result.length(), cu.trimLeadingZeros(result.toString()));
+                result.replace(0, result.length(), commonUtils.trimLeadingZeros(result.toString()));
                 result.insert(0, "-");
             }
             // State 3. Small negative value + larger positive value
             if(isOneNeg && !isTwoNeg && isTwoLarger){
                 String twosCompx = deriveTwosCompliment(values[0]);
                 // While converting to 2s compliment a digit might get dropped.
-                String twosComp = cu.padValue(twosCompx, values[1]);
+                String twosComp = commonUtils.padValue(twosCompx, values[1]);
                 result.insert(0, binAdd(twosComp, values[1], true));
-                result.replace(0, result.length(), cu.trimLeadingZeros(result.toString()));
+                result.replace(0, result.length(), commonUtils.trimLeadingZeros(result.toString()));
             }
             // State 4. Smaller positive value + larger negative value.
             if(!isOneNeg && isTwoNeg && isTwoLarger){
                 String twosCompx = deriveTwosCompliment(values[1]);
                 // While converting to 2s compliment a digit might get dropped.
-                String twosComp = cu.padValue(twosCompx, values[0]);
+                String twosComp = commonUtils.padValue(twosCompx, values[0]);
                 result.insert(0, binAdd(values[0], twosComp, false));
                 result.replace(0, result.length(), deriveTwosCompliment(result.toString()));
-                result.replace(0, result.length(), cu.trimLeadingZeros(result.toString()));
+                result.replace(0, result.length(), commonUtils.trimLeadingZeros(result.toString()));
                 result.insert(0, "-");
             }
             // State 5. Larger positive  value + small negative value.
             if(!isOneNeg && isTwoNeg && isOneLarger){
                 String twosCompx = deriveTwosCompliment(values[1]);
                 // While converting to 2s compliment a digit might get dropped.
-                String twosComp = cu.padValue(twosCompx, values[0]);
+                String twosComp = commonUtils.padValue(twosCompx, values[0]);
                 result.insert(0, binAdd(values[0], twosComp, true));
-                result.replace(0, result.length(), cu.trimLeadingZeros(result.toString()));
+                result.replace(0, result.length(), commonUtils.trimLeadingZeros(result.toString()));
             }
         }
         else if (operatorFromUI.compareTo("Mult") == 0) {
@@ -124,7 +123,7 @@ public class Base2Maths {
         }
         else if(operatorFromUI.compareTo("Div") == 0){
             // Thou shalt not divide by zero
-            if(cu.isValueZero(values[1])){
+            if(commonUtils.isValueZero(values[1])){
                 return "Thou Shalt Divide By Zero!";
             }
             // The dividend needs to be larger that the divisor. If not
@@ -153,7 +152,7 @@ public class Base2Maths {
         // Addition between two binary number bits can have one four states.
         int tmp = 0;
         int carry = 0;
-        StringBuilder value2a = new StringBuilder(cu.padValue(value2, value1));
+        StringBuilder value2a = new StringBuilder(commonUtils.padValue(value2, value1));
 
         for(int i = value1.length()-1; i >= 0; i--){
             int f = Character.getNumericValue(value1.charAt(i));
@@ -209,11 +208,11 @@ public class Base2Maths {
         int l2 = value2.length();
         int l = 0;
         if(l1 >= l2) {
-            arr = cu.createMultiArray(l1);
+            arr = commonUtils.createMultiArray(l1);
             l = l1;
         }
         else{
-            arr = cu.createMultiArray(l2);
+            arr = commonUtils.createMultiArray(l2);
             l = l2;
         }
 
@@ -271,7 +270,7 @@ public class Base2Maths {
         else{
             result.insert(0, arr[0][1]);
         }
-        result.replace(0, result.length(), cu.trimLeadingZeros(result.toString()));
+        result.replace(0, result.length(), commonUtils.trimLeadingZeros(result.toString()));
         return result.toString();
     }
 
@@ -312,7 +311,7 @@ public class Base2Maths {
             // before entering this method. So we are trimming it back with the standard
             // trim method and then adding a single zero back on the left end
             // to get it to the proper length prior to taking the 2s compliment.
-            StringBuilder divisorSB = new StringBuilder(cu.trimLeadingZeros(divisor));
+            StringBuilder divisorSB = new StringBuilder(commonUtils.trimLeadingZeros(divisor));
             divisorSB.insert(0, '0');
 
             // Typically a divisor can divide a dividend one digit larger that it's self.
@@ -322,7 +321,7 @@ public class Base2Maths {
             // digits as the divisor, both padded with a zero on the left to give it the
             // desired divisor.length()+1 working length.
 
-            // We need to get a 2s compliment of the divisor
+            // We need to get the 2s compliment of the divisor
             StringBuilder divisor2s = new StringBuilder(deriveTwosCompliment(divisorSB.toString()));
 
             // Setup the quotient with an initial length. The length will never be longer that the dividend.
@@ -367,8 +366,8 @@ public class Base2Maths {
                     remainder.deleteCharAt(0);
                 }
             }
-            quotient.replace(0, quotient.length(), cu.trimLeadingZeros(quotient.toString()));
-            remainder.replace(0, remainder.length(), cu.trimLeadingZeros(remainder.toString()));
+            quotient.replace(0, quotient.length(), commonUtils.trimLeadingZeros(quotient.toString()));
+            remainder.replace(0, remainder.length(), commonUtils.trimLeadingZeros(remainder.toString()));
             result.insert(0, quotient.toString() + " R: " + remainder.toString());
         }
         return result.toString();
@@ -423,9 +422,9 @@ public class Base2Maths {
                 TorF = false;
                 break;
             }
-            //else if(Character.getNumericValue(string1.charAt(i)) == Character.getNumericValue(string2.charAt(i))){
-            //    TorF = true;
-            //}
+            else if(Character.getNumericValue(string1.charAt(i)) == Character.getNumericValue(string2.charAt(i))){
+                TorF = true;
+            }
         }
         return TorF;
     }

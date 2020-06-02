@@ -12,14 +12,14 @@ public class CommonUtils {
     }
 
     // Singleton constructor.
-    private CommonUtils() {
+    CommonUtils() {
     }
 
 
 
-    public static DataContainer container = new DataContainer();
+    public DataContainer container = new DataContainer();
 
-    public static DataContainer etBehavior(CharSequence cs, CharSequence et1, int cp, boolean isMinus, boolean isValue, boolean isBackSpace){
+    public DataContainer etBehavior(CharSequence cs, CharSequence et1, int cp, boolean isMinus, boolean isValue, boolean isBackSpace){
         StringBuilder sb = new StringBuilder(et1);
         // Inserting or removing a minus sign. This must
         // always be at the left end of the string.
@@ -67,7 +67,7 @@ public class CommonUtils {
     // General methods ///////////////////////////////////////////////////////////////////////////////////////////////
     // These methods used by other classes.
     ///////////////////////////////////////////////////////////////////////////////////////////////
-    protected static String trimLeadingZeros(String x){
+    protected String trimLeadingZeros(String x){
         StringBuilder trimmed = new StringBuilder(x);
 
         // Its strange how I have to extract the length to insert into the for
@@ -89,7 +89,7 @@ public class CommonUtils {
 
     // The purpose of this method is to remove the negative signs
     // and pad the left end of a value if its shorter.
-    protected static String[] prepValues(String value1, String value2){
+    protected String[] prepValues(String value1, String value2){
         String[] result = new String[5];
         result[2] = "0";
         result[3] = "0";
@@ -162,7 +162,7 @@ public class CommonUtils {
 
 
     // This created the array for the multiplication functions.
-    protected static int[][] createMultiArray(int l){
+    protected int[][] createMultiArray(int l){
         int[][] x = new int[l][l*2];
         for(int i = 0; i < l; i++){
             for(int j = 0; j*2 < l; j++){
@@ -174,7 +174,7 @@ public class CommonUtils {
 
 
     // Pad a value so both are the same length.
-    protected static String padValue(String shorter, String longer){
+    protected String padValue(String shorter, String longer){
         StringBuilder result = new StringBuilder(shorter);
 
         for(int i = longer.length()-1; i >= shorter.length(); i--){
@@ -185,7 +185,7 @@ public class CommonUtils {
     }
 
 
-    protected static boolean isValueZero(String val){
+    protected boolean isValueZero(String val){
         boolean YorN = true;
         for(int z = 0; z < val.length(); z++){
             if(Character.getNumericValue(val.charAt(z)) == 0){

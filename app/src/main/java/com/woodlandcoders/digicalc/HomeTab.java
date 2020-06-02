@@ -23,7 +23,7 @@ public class HomeTab extends Fragment {
         View view = inflater.inflate(R.layout.home_tab, container, false);
         instruct = view.findViewById(R.id.instructions);
         instruct.setText(Html.fromHtml(getString(R.string.home)));
-
+        instruct.setShowSoftInputOnFocus(false);
         return view;
     }
 }

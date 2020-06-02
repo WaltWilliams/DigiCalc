@@ -4,13 +4,13 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -25,6 +25,8 @@ public class OctMathTab extends Fragment implements AdapterView.OnItemSelectedLi
     private OctViewModel octViewModel;
     // The Child Fragment.
     private OctKeyPad octKeyPad;
+
+    private CommonUtils commonUtils;
 
     private Button execButton;
     private Button clr;
@@ -43,8 +45,9 @@ public class OctMathTab extends Fragment implements AdapterView.OnItemSelectedLi
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.octal_math_tab, container, false);
 
-
         final Base8Maths maths = Base8Maths.getInstance();
+
+        commonUtils = CommonUtils.getInstance();
 
         execButton = view.findViewById(R.id.octButton);
         clr = view.findViewById(R.id.octClearFieldButton);
@@ -138,7 +141,7 @@ public class OctMathTab extends Fragment implements AdapterView.OnItemSelectedLi
                     cp = editText1.getSelectionStart();
                     CharSequence et1 = editText1.getText();
 
-                    DataContainer container = CommonUtils.etBehavior(charSequence, et1, cp, isMinus, isValue, isBackSpace);
+                    DataContainer container = commonUtils.etBehavior(charSequence, et1, cp, isMinus, isValue, isBackSpace);
                     editText1.setText(container.cs);
                     editText1.setSelection(container.pos);
                 }
@@ -146,12 +149,13 @@ public class OctMathTab extends Fragment implements AdapterView.OnItemSelectedLi
                     cp = editText2.getSelectionStart();
                     String et2 = editText2.getText().toString();
 
-                    DataContainer container = CommonUtils.etBehavior(charSequence, et2, cp, isMinus, isValue, isBackSpace);
+                    DataContainer container = commonUtils.etBehavior(charSequence, et2, cp, isMinus, isValue, isBackSpace);
                     editText2.setText(container.cs);
                     editText2.setSelection(container.pos);
                 }
             }
         });
+        octViewModel.insertOctDigit("");
     }
 
 
@@ -180,6 +184,13 @@ public class OctMathTab extends Fragment implements AdapterView.OnItemSelectedLi
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
 
+    }
+
+    // Turns off the soft keyboard on start up or when the activity comes into view
+    @Override
+    public void onStart() {
+        super.onStart();
+        getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
     }
 
 

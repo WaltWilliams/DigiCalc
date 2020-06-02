@@ -5,13 +5,13 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -27,6 +27,8 @@ public class BinMathTab extends Fragment implements AdapterView.OnItemSelectedLi
     private BinViewModel binViewModel;
     // The Child Fragment.
     private BinKeyPad binKeyPad;
+
+    private CommonUtils commonUtils;
 
     private Button execButton;
     private Button clr;
@@ -46,8 +48,8 @@ public class BinMathTab extends Fragment implements AdapterView.OnItemSelectedLi
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.bin_math_tab, container, false);
 
-
         final Base2Maths maths = Base2Maths.getInstance();
+        commonUtils = CommonUtils.getInstance();
 
         execButton = view.findViewById(R.id.binButton);
         clr = view.findViewById(R.id.binClearFieldButton);
@@ -58,6 +60,9 @@ public class BinMathTab extends Fragment implements AdapterView.OnItemSelectedLi
         FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
         transaction.add(R.id.binKeyFrame, binKeyPad).commit();
 
+        System.out.println("\n");
+        System.out.println("\nFUCK DUCKS\n");
+        System.out.println("\n");
 
         editText1 = view.findViewById(R.id.binEditText1);
         editText1.setCursorVisible(true);
@@ -105,7 +110,7 @@ public class BinMathTab extends Fragment implements AdapterView.OnItemSelectedLi
     } // End of onCreateView.
 
 
-    private int cp = 0; // Related to the code just below. "cursor position"
+    private int cursorPosition = 0; // Related to the code just below. "cursor position"
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -130,23 +135,24 @@ public class BinMathTab extends Fragment implements AdapterView.OnItemSelectedLi
                 }
 
                 if (editText1.isFocused()) {
-                    cp = editText1.getSelectionStart();
+                    cursorPosition = editText1.getSelectionStart();
                     CharSequence et1 = editText1.getText();
 
-                    DataContainer container = CommonUtils.etBehavior(charSequence, et1, cp, isMinus, isValue, isBackSpace);
+                    DataContainer container = commonUtils.etBehavior(charSequence, et1, cursorPosition, isMinus, isValue, isBackSpace);
                     editText1.setText(container.cs);
                     editText1.setSelection(container.pos);
                 }
                 if (editText2.isFocused()) {
-                    cp = editText2.getSelectionStart();
+                    cursorPosition = editText2.getSelectionStart();
                     String et2 = editText2.getText().toString();
 
-                    DataContainer container = CommonUtils.etBehavior(charSequence, et2, cp, isMinus, isValue, isBackSpace);
+                    DataContainer container = commonUtils.etBehavior(charSequence, et2, cursorPosition, isMinus, isValue, isBackSpace);
                     editText2.setText(container.cs);
                     editText2.setSelection(container.pos);
                 }
             }
         });
+        binViewModel.insertBinDigit("");
     }
 
 
@@ -170,10 +176,16 @@ public class BinMathTab extends Fragment implements AdapterView.OnItemSelectedLi
             editText2.setHint("Divisor");
         }
     }
-
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
 
+    }
+
+    // Turns off the soft keyboard on start up or when the activity comes into view
+    @Override
+    public void onStart() {
+        super.onStart();
+        getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
     }
 
 

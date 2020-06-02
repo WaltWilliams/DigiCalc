@@ -7,10 +7,10 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -25,6 +25,8 @@ public class HexMathTab extends Fragment implements AdapterView.OnItemSelectedLi
     private HexViewModel hexViewModel;
     // The Child Fragment.
     private HexKeyPad hexKeyPad;
+
+    private CommonUtils commonUtils;
 
     private Button execButton;
     private Button clr;
@@ -44,8 +46,9 @@ public class HexMathTab extends Fragment implements AdapterView.OnItemSelectedLi
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.hex_math_tab, container, false);
 
-
         final Base16Maths maths = Base16Maths.getInstance();
+
+        commonUtils = CommonUtils.getInstance();
 
         // Inserting keyboard fragment.
         hexKeyPad = new HexKeyPad();
@@ -146,7 +149,7 @@ public class HexMathTab extends Fragment implements AdapterView.OnItemSelectedLi
                     cp = editText1.getSelectionStart();
                     CharSequence et1 = editText1.getText();
 
-                    DataContainer container = CommonUtils.etBehavior(charSequence, et1, cp, isMinus, isValue, isBackSpace);
+                    DataContainer container = commonUtils.etBehavior(charSequence, et1, cp, isMinus, isValue, isBackSpace);
                     editText1.setText(container.cs);
                     editText1.setSelection(container.pos);
                 }
@@ -154,12 +157,13 @@ public class HexMathTab extends Fragment implements AdapterView.OnItemSelectedLi
                     cp = editText2.getSelectionStart();
                     String et2 = editText2.getText().toString();
 
-                    DataContainer container = CommonUtils.etBehavior(charSequence, et2, cp, isMinus, isValue, isBackSpace);
+                    DataContainer container = commonUtils.etBehavior(charSequence, et2, cp, isMinus, isValue, isBackSpace);
                     editText2.setText(container.cs);
                     editText2.setSelection(container.pos);
                 }
             }
         });
+        hexViewModel.insertHexDigit("");
     }
 
 
@@ -184,11 +188,16 @@ public class HexMathTab extends Fragment implements AdapterView.OnItemSelectedLi
         }
 
     }
-
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
 
     }
 
+
+    // Turns off the soft keyboard on start up or when the activity comes into view
+    public void onStart() {
+        super.onStart();
+        getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+    }
 
 }

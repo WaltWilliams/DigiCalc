@@ -14,7 +14,7 @@ public class Base8Maths {
     private Base8Maths() {
     }
 
-    CommonUtils cu = CommonUtils.getInstance();
+    CommonUtils commonUtils = CommonUtils.getInstance();
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // Octal math //////////////////////////////////////////////////////////////////////////////////////////////////
     protected String octalMath(String value1, String value2, String operatorFromUI){
@@ -27,7 +27,7 @@ public class Base8Maths {
         // 4) Record the length of value2 as the divisor length.
         // 5) If either input was a negative zero the negative record is reset to false in that its not negative. 0 instead of -0
         // 6) Match length both input values by padding the shorter value with leading zeros.
-        String[] values = cu.prepValues(value1, value2);
+        String[] values = commonUtils.prepValues(value1, value2);
 
         // Making a boolean from the negative record from prepValues.
         boolean isOneNeg = false;
@@ -60,49 +60,49 @@ public class Base8Maths {
             if(isOneLarger & isOneNeg & !isTwoNeg){
                 String eightsCompx = deriveEightsCompliment(values[0]);
                 // While converting to 8s compliment a digit might get dropped.
-                String eightsComp = cu.padValue(eightsCompx, values[1]);
+                String eightsComp = commonUtils.padValue(eightsCompx, values[1]);
                 result.insert(0, octalAdd(eightsComp, values[1], true));
                 result.replace(0, result.length(), deriveEightsCompliment(result.toString()));
-                result.replace(0, result.length(), cu.trimLeadingZeros(result.toString()));
+                result.replace(0, result.length(), commonUtils.trimLeadingZeros(result.toString()));
                 result.insert(0, "-");
             }
             // State 3. Small negative value - larger positive value
             if(isOneNeg & isTwoLarger & !isTwoNeg){
                 String eightsCompx = deriveEightsCompliment(values[0]);
                 // While converting to 8s compliment a digit might get dropped.
-                String eightsComp = cu.padValue(eightsCompx, values[1]);
+                String eightsComp = commonUtils.padValue(eightsCompx, values[1]);
                 result.insert(0, octalAdd(eightsComp, values[1], true));
-                result.replace(0, result.length(), cu.trimLeadingZeros(result.toString()));
+                result.replace(0, result.length(), commonUtils.trimLeadingZeros(result.toString()));
             }
             // State 4. Smaller positive  value - larger negative value.
             if(!isOneNeg & isTwoLarger & isTwoNeg){
                 String eightsCompx = deriveEightsCompliment(values[1]);
                 // While converting to 8s compliment a digit might get dropped.
-                String eightsComp = cu.padValue(eightsCompx, values[0]);
+                String eightsComp = commonUtils.padValue(eightsCompx, values[0]);
                 result.insert(0, octalAdd(values[0], eightsComp.toString(), true));
                 result.replace(0, result.length(), deriveEightsCompliment(result.toString()));
-                result.replace(0, result.length(), cu.trimLeadingZeros(result.toString()));
+                result.replace(0, result.length(), commonUtils.trimLeadingZeros(result.toString()));
                 result.insert(0, "-");
             }
             // State 5. Larger positive  value - small negative value.
             if(!isOneNeg & isOneLarger & isTwoNeg){
                 String eightsCompx = deriveEightsCompliment(values[1]);
                 // While converting to 8s compliment a digit might get dropped.
-                String eightsComp = cu.padValue(eightsCompx, values[0]);
+                String eightsComp = commonUtils.padValue(eightsCompx, values[0]);
                 result.insert(0, octalAdd(values[0], eightsComp, true));
-                result.replace(0, result.length(), cu.trimLeadingZeros(result.toString()));
+                result.replace(0, result.length(), commonUtils.trimLeadingZeros(result.toString()));
             }
         }
         else if(operatorFromUI.compareTo("Mult") == 0){
             result.insert(0, octalMult(values[0], values[1]));
-            result.replace(0, result.length(), cu.trimLeadingZeros(result.toString()));
+            result.replace(0, result.length(), commonUtils.trimLeadingZeros(result.toString()));
             if((isOneNeg & !isTwoNeg) | (!isOneNeg & isTwoNeg)){
                 result.insert(0, "-");
             }
         }
         else if(operatorFromUI.compareTo("Div") == 0){
             // Thou shalt not divide by zero
-            if(cu.isValueZero(values[1])){
+            if(commonUtils.isValueZero(values[1])){
                 return "Thou Shalt Divide By Zero!";
             }
             // The dividend needs to be larger that the divisor. If not
@@ -199,11 +199,11 @@ public class Base8Maths {
         int l = 0;
         int carry = 0;
         if(l1 >= l2) {
-            arr = cu.createMultiArray(l1);
+            arr = commonUtils.createMultiArray(l1);
             l = l1;
         }
         else{
-            arr = cu.createMultiArray(l2);
+            arr = commonUtils.createMultiArray(l2);
             l = l2;
         }
 
@@ -249,7 +249,7 @@ public class Base8Maths {
             // which is desirable for regular addition, we need to re-pad row 1
             // with leading zeros before proceeding so the values align for the
             // next addition.
-            row1.replace(0, row1.length(), cu.padValue(row1.toString(), row2.toString()));
+            row1.replace(0, row1.length(), commonUtils.padValue(row1.toString(), row2.toString()));
             row2.delete(0, (l * 2)); // Remove the contents from row2.
 
             // Grab the third or . . . row and add them until there are not anymore rows.
@@ -260,7 +260,7 @@ public class Base8Maths {
                 // Now add row1 with the row you just got.
                 row1.replace(0, (l * 2), octalAdd(row1.toString(), row2.toString(), false));
                 // Re-padding the leading zeros in row1.
-                row1.replace(0, row1.length(), cu.padValue(row1.toString(), row2.toString()));
+                row1.replace(0, row1.length(), commonUtils.padValue(row1.toString(), row2.toString()));
                 row2.delete(0, (l * 2)); // Remove the contents from row2.
             }
         }
@@ -311,7 +311,7 @@ public class Base8Maths {
             // trim method and then adding a single zero back on the left end
             // to get it to the proper length prior to taking the 2s compliment.
             // "divisorSB" is the divisor-fragment mentioned below.
-            StringBuilder divisorSB = new StringBuilder(cu.trimLeadingZeros(divisor));
+            StringBuilder divisorSB = new StringBuilder(commonUtils.trimLeadingZeros(divisor));
             divisorSB.insert(0, '0');
             // Place holder for the original divisor.
             // Its the divisorSB that gets change.
@@ -333,7 +333,7 @@ public class Base8Maths {
 
             // Creating an 8s compliment zero
             StringBuilder ONE = new StringBuilder("1");
-            ONE.replace(0, ONE.length(), cu.padValue(ONE.toString(), remainder.toString()));
+            ONE.replace(0, ONE.length(), commonUtils.padValue(ONE.toString(), remainder.toString()));
             ONE.replace(0, ONE.length(), deriveEightsCompliment(ONE.toString()));
 
             // Let the fun begin.
@@ -346,7 +346,7 @@ public class Base8Maths {
                 // This scalar will become part of the quotient.
                 StringBuilder divisorMultiple = new StringBuilder("7");
                 // Padding the divisorMultiple.
-                divisorMultiple.replace(0, divisorMultiple.length(), cu.padValue(divisorMultiple.toString(), remainder.toString()));
+                divisorMultiple.replace(0, divisorMultiple.length(), commonUtils.padValue(divisorMultiple.toString(), remainder.toString()));
                 //====================================================================================================
                 // Getting the initial scaled up divisor.
                 divisorSB.replace(0, divisorSB.length(), octalMult(divisorMultiple.toString(), tmpDivisor));
@@ -383,7 +383,7 @@ public class Base8Maths {
 
             // picking up the last digit in the dividend.
             StringBuilder divisorMultiple = new StringBuilder("7");
-            divisorMultiple.replace(0, divisorMultiple.length(), cu.padValue(divisorMultiple.toString(), remainder.toString()));
+            divisorMultiple.replace(0, divisorMultiple.length(), commonUtils.padValue(divisorMultiple.toString(), remainder.toString()));
 
             divisorSB.replace(0, divisorSB.length(), octalMult(divisorMultiple.toString(), tmpDivisor));
             // The multiplication method leaves excess leading zeros. Lets trim them back.
@@ -406,9 +406,9 @@ public class Base8Maths {
 
             // Append the quotient
             quotient.append(Integer.parseInt(divisorMultiple.toString()));
-            remainder.replace(0, remainder.length(), cu.trimLeadingZeros(remainder.toString()));
+            remainder.replace(0, remainder.length(), commonUtils.trimLeadingZeros(remainder.toString()));
 
-            results.insert(0, cu.trimLeadingZeros(quotient.toString()) + " R: " + cu.trimLeadingZeros(remainder.toString()));
+            results.insert(0, commonUtils.trimLeadingZeros(quotient.toString()) + " R: " + commonUtils.trimLeadingZeros(remainder.toString()));
         }
         return results.toString();
     }
@@ -429,7 +429,7 @@ public class Base8Maths {
             int n = seven - singleOctalDigit;
             result.insert(0, n);
         }
-        result.replace(0, result.length(), octalAdd(result.toString(), cu.padValue("1", result.toString()), false));
+        result.replace(0, result.length(), octalAdd(result.toString(), commonUtils.padValue("1", result.toString()), false));
 
         return result.toString();
     }

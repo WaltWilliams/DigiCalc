@@ -1,6 +1,9 @@
 package com.woodlandcoders.digicalc;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 
 import com.google.android.material.tabs.TabLayout;
 import androidx.viewpager.widget.ViewPager;
@@ -19,6 +22,5 @@ public class MainActivity extends AppCompatActivity {
 
         TabLayout tabs = findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
-
     }
 }

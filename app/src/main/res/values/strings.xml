@@ -71,7 +71,7 @@
         DigiCalc will calculate 64bit binary, octal and hexadecimal values.
         </p>
         <p>
-        Navigate by tapping on the desired tab or swipe in the proper direction.
+        Navigate by tapping on the desired tab or swipe in the proper direction (as if you are turning a page).
         </p>
         <p>
         Select your desired operation, \"Add\", \"Mult\", or \"Div\" from the drop down menu.
@@ -81,21 +81,24 @@
         See directly below.
         </p>
         <p>
-        The negative sign key is a toggle. The negative sign key on the keypad is designed so that when you tap
-        on it once it will place a negative sign on the far left end of the value. Tapping on it again
+        The negative sign key is a toggle. Tapping
+        on it once will place a negative sign on the far left end of the value. Tapping on it again
         will remove it. Regardless of the cursor\'s position in the value.
         </p>
         <p>
-        To correct a typo, tap on the value at the desired position then, if needed, use the arrow keys,
-        \"&lt;\" or \"&gt;\", to position the cursor to just behind the digit to be changed, then tap \"Del\" key to
-        delete <i>that</i> digit, then tap on the correct value.
+        To correct a typo, tap on the value at the desired position then if needed use the arrow keys,
+        \"&lt;\" or \"&gt;\", to position the cursor to just behind the digit to be changed. Tap \"Del\" key to
+        delete <i>that</i> digit. Then tap on the correct digit.
         </p>
         <p>
-         Testing was performed using two unique sources for solutions which were compared against the calculation algorithm\'s
-         output. Even though numerous hours were spent testing, there is bound to be a pair of values that will produce
-         erroneous results. We would be <u>VERY</u> interested in having the pair of values to troubleshoot and test with.
-         Please send the pair of values, which base, arithmetic mode, and the results you\'re getting to:
-         <b>woodlandcoders@gmail.com</b>. For quick identification the subject should read: \"Bad DigiCalc Results\".
+        The \"CLR\" key will clear all of the fields.
+        </p>
+        <p>
+         Testing was performed using two independent sources for solutions, both of which were compared against the calculation algorithm\'s
+         output. Even though numerous hours were spent in testing, there is bound to be a pair of values that will produce
+         erroneous results. We would be <u>VERY</u> interested in having that pair of values to troubleshoot and test with.
+         Please send the pair of values, the numerical base, arithmetic mode, and the results you are getting to:
+         <b>woodlandcoders@gmail.com</b>. For quick identification use the subject: \"Bad DigiCalc Results\".
         </p>
         ]]>
     </string>
