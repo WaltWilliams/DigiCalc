@@ -60,10 +60,6 @@ public class BinMathTab extends Fragment implements AdapterView.OnItemSelectedLi
         FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
         transaction.add(R.id.binKeyFrame, binKeyPad).commit();
 
-        System.out.println("\n");
-        System.out.println("\nFUCK DUCKS\n");
-        System.out.println("\n");
-
         editText1 = view.findViewById(R.id.binEditText1);
         editText1.setCursorVisible(true);
         editText1.requestFocus(); // Places the cursor in the field on start up.
@@ -134,21 +130,25 @@ public class BinMathTab extends Fragment implements AdapterView.OnItemSelectedLi
                     isValue = true;
                 }
 
-                if (editText1.isFocused()) {
-                    cursorPosition = editText1.getSelectionStart();
-                    CharSequence et1 = editText1.getText();
+                if(editText1.length() < 64) {
+                    if (editText1.isFocused()) {
+                        cursorPosition = editText1.getSelectionStart();
+                        CharSequence et1 = editText1.getText();
 
-                    DataContainer container = commonUtils.etBehavior(charSequence, et1, cursorPosition, isMinus, isValue, isBackSpace);
-                    editText1.setText(container.cs);
-                    editText1.setSelection(container.pos);
+                        DataContainer container = commonUtils.etBehavior(charSequence, et1, cursorPosition, isMinus, isValue, isBackSpace);
+                        editText1.setText(container.cs);
+                        editText1.setSelection(container.pos);
+                    }
                 }
-                if (editText2.isFocused()) {
-                    cursorPosition = editText2.getSelectionStart();
-                    String et2 = editText2.getText().toString();
+                if(editText2.length() < 64){
+                    if (editText2.isFocused()) {
+                        cursorPosition = editText2.getSelectionStart();
+                        String et2 = editText2.getText().toString();
 
-                    DataContainer container = commonUtils.etBehavior(charSequence, et2, cursorPosition, isMinus, isValue, isBackSpace);
-                    editText2.setText(container.cs);
-                    editText2.setSelection(container.pos);
+                        DataContainer container = commonUtils.etBehavior(charSequence, et2, cursorPosition, isMinus, isValue, isBackSpace);
+                        editText2.setText(container.cs);
+                        editText2.setSelection(container.pos);
+                    }
                 }
             }
         });

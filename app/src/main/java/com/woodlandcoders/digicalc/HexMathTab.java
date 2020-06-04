@@ -145,21 +145,25 @@ public class HexMathTab extends Fragment implements AdapterView.OnItemSelectedLi
                     isValue = true;
                 }
 
-                if (editText1.isFocused()) {
-                    cp = editText1.getSelectionStart();
-                    CharSequence et1 = editText1.getText();
+                if(editText1.length() < 16) {
+                    if (editText1.isFocused()) {
+                        cp = editText1.getSelectionStart();
+                        CharSequence et1 = editText1.getText();
 
-                    DataContainer container = commonUtils.etBehavior(charSequence, et1, cp, isMinus, isValue, isBackSpace);
-                    editText1.setText(container.cs);
-                    editText1.setSelection(container.pos);
+                        DataContainer container = commonUtils.etBehavior(charSequence, et1, cp, isMinus, isValue, isBackSpace);
+                        editText1.setText(container.cs);
+                        editText1.setSelection(container.pos);
+                    }
                 }
-                if (editText2.isFocused()) {
-                    cp = editText2.getSelectionStart();
-                    String et2 = editText2.getText().toString();
+                if(editText2.length() < 16){
+                    if (editText2.isFocused()) {
+                        cp = editText2.getSelectionStart();
+                        String et2 = editText2.getText().toString();
 
-                    DataContainer container = commonUtils.etBehavior(charSequence, et2, cp, isMinus, isValue, isBackSpace);
-                    editText2.setText(container.cs);
-                    editText2.setSelection(container.pos);
+                        DataContainer container = commonUtils.etBehavior(charSequence, et2, cp, isMinus, isValue, isBackSpace);
+                        editText2.setText(container.cs);
+                        editText2.setSelection(container.pos);
+                    }
                 }
             }
         });
