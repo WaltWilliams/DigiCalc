@@ -34,6 +34,9 @@ public class OctMathTab extends Fragment implements AdapterView.OnItemSelectedLi
     private EditText editText1;
     private EditText editText2;
     private TextView resultTextView;
+    private TextView octCtField1;
+    private TextView octCtField2;
+
     private String selection;
 
     public OctMathTab() {
@@ -68,6 +71,12 @@ public class OctMathTab extends Fragment implements AdapterView.OnItemSelectedLi
         editText2.setCursorVisible(true);
         editText2.setShowSoftInputOnFocus(false);// Disables soft keyboard without disabling the cursor.
 
+        // Counter fields.
+        octCtField1 = view.findViewById(R.id.octCounterField1);
+        octCtField2 = view.findViewById(R.id.octCounterField2);
+        octCtField1.setText("0/22");
+        octCtField2.setText("0/22");
+
         // Spinner functionality stuff.
         octSp = view.findViewById(R.id.octSp);
         ArrayAdapter<CharSequence> adapter  = ArrayAdapter.createFromResource(this.getActivity(), R.array.operators, android.R.layout.simple_spinner_item);
@@ -98,6 +107,8 @@ public class OctMathTab extends Fragment implements AdapterView.OnItemSelectedLi
                 editText1.getText().clear();
                 editText2.getText().clear();
                 resultTextView.setText("");
+                octCtField1.setText("0/22");
+                octCtField2.setText("0/22");
             }
         });
 
@@ -119,12 +130,16 @@ public class OctMathTab extends Fragment implements AdapterView.OnItemSelectedLi
                 boolean isValue = false;
                 boolean isMinus = false;
                 boolean isBackSpace = false;
+                boolean isArrow = false;
 
                 if(charSequence == "-"){
                     isMinus = true;
                 }
                 if(charSequence == "Z"){
                     isBackSpace = true;
+                }
+                if(charSequence == "<" | charSequence == ">"){
+                    isArrow = true;
                 }
                 if(charSequence == "1" ||
                         charSequence == "2" ||
@@ -137,7 +152,7 @@ public class OctMathTab extends Fragment implements AdapterView.OnItemSelectedLi
                     isValue = true;
                 }
 
-                if(editText1.length() < 22) {
+                if(editText1.length() < 22 | isMinus | isBackSpace | isArrow) {
                     if (editText1.isFocused()) {
                         cp = editText1.getSelectionStart();
                         CharSequence et1 = editText1.getText();
@@ -145,9 +160,10 @@ public class OctMathTab extends Fragment implements AdapterView.OnItemSelectedLi
                         DataContainer container = commonUtils.etBehavior(charSequence, et1, cp, isMinus, isValue, isBackSpace);
                         editText1.setText(container.cs);
                         editText1.setSelection(container.pos);
+                        octCtField1.setText(editText1.getSelectionStart() + "/22");
                     }
                 }
-                if(editText2.length() < 22) {
+                if(editText2.length() < 22 | isMinus | isBackSpace | isArrow) {
                     if (editText2.isFocused()) {
                         cp = editText2.getSelectionStart();
                         String et2 = editText2.getText().toString();
@@ -155,6 +171,7 @@ public class OctMathTab extends Fragment implements AdapterView.OnItemSelectedLi
                         DataContainer container = commonUtils.etBehavior(charSequence, et2, cp, isMinus, isValue, isBackSpace);
                         editText2.setText(container.cs);
                         editText2.setSelection(container.pos);
+                        octCtField2.setText(editText2.getSelectionStart() + "/22");
                     }
                 }
             }

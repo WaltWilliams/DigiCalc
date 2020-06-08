@@ -36,6 +36,8 @@ public class BinMathTab extends Fragment implements AdapterView.OnItemSelectedLi
     private EditText editText1;
     private EditText editText2;
     private TextView resultTextView;
+    private TextView binCtField1;
+    private TextView binCtField2;
     private String selection;
 
 
@@ -69,6 +71,12 @@ public class BinMathTab extends Fragment implements AdapterView.OnItemSelectedLi
         editText2.setCursorVisible(true);
         editText2.setShowSoftInputOnFocus(false);// Disables soft keyboard without disabling the cursor.
 
+        // Counter fields.
+        binCtField1 = view.findViewById(R.id.binCounterField1);
+        binCtField2 = view.findViewById(R.id.binCounterField2);
+        binCtField1.setText("0/64");
+        binCtField2.setText("0/64");
+
         // Spinner functionality stuff.
         binSp = view.findViewById(R.id.binSp);
         ArrayAdapter<CharSequence> adapter  = ArrayAdapter.createFromResource(this.getActivity(), R.array.operators, android.R.layout.simple_spinner_item);
@@ -99,6 +107,8 @@ public class BinMathTab extends Fragment implements AdapterView.OnItemSelectedLi
                 editText1.getText().clear();
                 editText2.getText().clear();
                 resultTextView.setText("");
+                binCtField1.setText("0/64");
+                binCtField2.setText("0/64");
             }
         });
         return view;
@@ -119,18 +129,22 @@ public class BinMathTab extends Fragment implements AdapterView.OnItemSelectedLi
                 boolean isValue = false;
                 boolean isMinus = false;
                 boolean isBackSpace = false;
+                boolean isArrow = false;
 
-                if (charSequence == "-") {
+                if(charSequence == "-") {
                     isMinus = true;
                 }
-                if (charSequence == "Z") {
+                if(charSequence == "Z") {
                     isBackSpace = true;
                 }
-                if (charSequence == "1" || charSequence == "0") {
+                if(charSequence == "1" || charSequence == "0") {
                     isValue = true;
                 }
+                if(charSequence == "<" | charSequence == ">"){
+                    isArrow = true;
+                }
 
-                if(editText1.length() < 64) {
+                if(editText1.length() < 64 | isMinus | isBackSpace | isArrow) {
                     if (editText1.isFocused()) {
                         cursorPosition = editText1.getSelectionStart();
                         CharSequence et1 = editText1.getText();
@@ -138,9 +152,10 @@ public class BinMathTab extends Fragment implements AdapterView.OnItemSelectedLi
                         DataContainer container = commonUtils.etBehavior(charSequence, et1, cursorPosition, isMinus, isValue, isBackSpace);
                         editText1.setText(container.cs);
                         editText1.setSelection(container.pos);
+                        binCtField1.setText(editText1.getSelectionStart() + "/64");
                     }
                 }
-                if(editText2.length() < 64){
+                if(editText2.length() < 64| isMinus | isBackSpace | isArrow){
                     if (editText2.isFocused()) {
                         cursorPosition = editText2.getSelectionStart();
                         String et2 = editText2.getText().toString();
@@ -148,6 +163,7 @@ public class BinMathTab extends Fragment implements AdapterView.OnItemSelectedLi
                         DataContainer container = commonUtils.etBehavior(charSequence, et2, cursorPosition, isMinus, isValue, isBackSpace);
                         editText2.setText(container.cs);
                         editText2.setSelection(container.pos);
+                        binCtField2.setText(editText2.getSelectionStart() + "/64");
                     }
                 }
             }

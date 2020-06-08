@@ -35,6 +35,9 @@ public class HexMathTab extends Fragment implements AdapterView.OnItemSelectedLi
     private EditText editText2;
     private String selection;
     private TextView resultTextView;
+    private TextView hexCtField1;
+    private TextView hexCtField2;
+
 
     public HexMathTab() {
         // Empty constructor.
@@ -67,6 +70,12 @@ public class HexMathTab extends Fragment implements AdapterView.OnItemSelectedLi
         editText2 = view.findViewById(R.id.hexEditText2);
         editText2.setCursorVisible(true);
         editText2.setShowSoftInputOnFocus(false);// Disables soft keyboard without disabling the cursor.
+        // Counter fields.
+        hexCtField1 = view.findViewById(R.id.hexCounterField1);
+        hexCtField2 = view.findViewById(R.id.hexCounterField2);
+        hexCtField1.setText("0/16");
+        hexCtField2.setText("0/16");
+
 
         // Spinner functionality stuff.
         hexSp = view.findViewById(R.id.hexSp);
@@ -98,6 +107,8 @@ public class HexMathTab extends Fragment implements AdapterView.OnItemSelectedLi
                 editText1.getText().clear();
                 editText2.getText().clear();
                 resultTextView.setText("");
+                hexCtField1.setText("0/16");
+                hexCtField2.setText("0/16");
             }
         });
 
@@ -119,12 +130,16 @@ public class HexMathTab extends Fragment implements AdapterView.OnItemSelectedLi
                 boolean isValue = false;
                 boolean isMinus = false;
                 boolean isBackSpace = false;
+                boolean isArrow = false;
 
                 if(charSequence == "-"){
                     isMinus = true;
                 }
                 if(charSequence == "Z"){
                     isBackSpace = true;
+                }
+                if(charSequence == "<" | charSequence == ">"){
+                    isArrow = true;
                 }
                 if(charSequence == "1" ||
                         charSequence == "2" ||
@@ -145,7 +160,7 @@ public class HexMathTab extends Fragment implements AdapterView.OnItemSelectedLi
                     isValue = true;
                 }
 
-                if(editText1.length() < 16) {
+                if(editText1.length() < 16 | isMinus | isBackSpace | isArrow) {
                     if (editText1.isFocused()) {
                         cp = editText1.getSelectionStart();
                         CharSequence et1 = editText1.getText();
@@ -153,9 +168,10 @@ public class HexMathTab extends Fragment implements AdapterView.OnItemSelectedLi
                         DataContainer container = commonUtils.etBehavior(charSequence, et1, cp, isMinus, isValue, isBackSpace);
                         editText1.setText(container.cs);
                         editText1.setSelection(container.pos);
+                        hexCtField1.setText(editText1.getSelectionStart() + "/16");
                     }
                 }
-                if(editText2.length() < 16){
+                if(editText2.length() < 16 | isMinus | isBackSpace | isArrow){
                     if (editText2.isFocused()) {
                         cp = editText2.getSelectionStart();
                         String et2 = editText2.getText().toString();
@@ -163,6 +179,7 @@ public class HexMathTab extends Fragment implements AdapterView.OnItemSelectedLi
                         DataContainer container = commonUtils.etBehavior(charSequence, et2, cp, isMinus, isValue, isBackSpace);
                         editText2.setText(container.cs);
                         editText2.setSelection(container.pos);
+                        hexCtField2.setText(editText2.getSelectionStart() + "/16");
                     }
                 }
             }

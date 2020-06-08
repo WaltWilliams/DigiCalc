@@ -71,19 +71,25 @@
         DigiCalc will calculate 64bit binary, octal and hexadecimal values.
         </p>
         <p>
+        The input field are limited to 64bit values. 64bit Octal works out to be 21.333 digits,
+        or 3 binary bits per digit, so it was rounded up to 22 digits. 64bit hexadecimal is
+        equal 16 digits, which is 4 bits per digit. The output field has no limit because
+        of the results of multiplication.
+        </p>
+        <p>
         Navigate by tapping on the desired tab or swipe in the proper direction (as if you are turning a page).
         </p>
         <p>
         Select your desired operation, \"Add\", \"Mult\", or \"Div\" from the drop down menu.
         </p>
         <p>
-        Subtraction is done in the \"Add\" mode, by placing a negative sign in front of the desired value.
+        Subtraction is performed in the \"Add\" mode, by placing a negative sign in front of the desired value.
         See directly below.
         </p>
         <p>
-        The negative sign key is a toggle. Tapping
-        on it once will place a negative sign on the far left end of the value. Tapping on it again
-        will remove it. Regardless of the cursor\'s position in the value.
+        The negative sign key is a toggle. Tapping on it once will place a negative sign on the
+        far left end of the value. Tapping on it again will remove it. Regardless of the cursor\'s
+        position in the value.
         </p>
         <p>
         To correct a typo, tap on the value at the desired position then if needed use the arrow keys,
@@ -91,13 +97,13 @@
         delete <i>that</i> digit. Then tap on the correct digit.
         </p>
         <p>
-        The \"CLR\" key will clear all of the fields.
+        The \"CLR\" key will clear all of the fields on the current tab.
         </p>
         <p>
          Testing was performed using two independent sources for solutions, both of which were compared against the calculation algorithm\'s
          output. Even though numerous hours were spent in testing, there is bound to be a pair of values that will produce
          erroneous results. We would be <u>VERY</u> interested in having that pair of values to troubleshoot and test with.
-         Please send the pair of values, the numerical base, arithmetic mode, and the results you are getting to:
+         Please send the pair of values, their numerical base, arithmetic mode, and the results you are getting to:
          <b>woodlandcoders@gmail.com</b>. For quick identification use the subject: \"Bad DigiCalc Results\".
         </p>
         ]]>

@@ -53,8 +53,8 @@ public class Base2Maths {
             //  Negating them says that it is true that they
             //  are not negative. EX: !isOneNeg == positive. or true.
 
-            // Now add based on 6 state.
-            // State 1 and 6. Both values positive or both negative values.
+            // Now add based on 7 state.
+            // States 1 and 7. Both values positive or both negative values.
             // It doesn't matter which larger.
             if((!isOneNeg & !isTwoNeg) | (isOneNeg & isTwoNeg)){
                 result.insert(0, binAdd(values[0], values[1], false));
@@ -67,8 +67,14 @@ public class Base2Maths {
                 }
 
             }
-            // State 2. Large negative value + smaller positive value
-            if(isOneNeg && !isTwoNeg && isOneLarger){
+            // State 2. If both values are the same size (isOneLarger == false, isTwoLarger == false)
+            // and one or the other is negative. Its subtracting the same value from it's self. It
+            // will equal zero. 7 - 7 = 0
+            if((isOneLarger & isTwoLarger & ((isOneNeg & !isTwoNeg) | (!isOneNeg & isTwoNeg)))){
+                result.insert(0, "0");
+            }
+            // State 3. Large negative value + smaller positive value
+            else if(isOneNeg && !isTwoNeg && isOneLarger){
                 String twosCompx = deriveTwosCompliment(values[0]);
                 // While converting to 2s compliment a digit might get dropped.
                 String twosComp = commonUtils.padValue(twosCompx, values[1]);
@@ -77,16 +83,16 @@ public class Base2Maths {
                 result.replace(0, result.length(), commonUtils.trimLeadingZeros(result.toString()));
                 result.insert(0, "-");
             }
-            // State 3. Small negative value + larger positive value
-            if(isOneNeg && !isTwoNeg && isTwoLarger){
+            // State 4. Small negative value + larger positive value
+            else if(isOneNeg && !isTwoNeg && isTwoLarger){
                 String twosCompx = deriveTwosCompliment(values[0]);
                 // While converting to 2s compliment a digit might get dropped.
                 String twosComp = commonUtils.padValue(twosCompx, values[1]);
                 result.insert(0, binAdd(twosComp, values[1], true));
                 result.replace(0, result.length(), commonUtils.trimLeadingZeros(result.toString()));
             }
-            // State 4. Smaller positive value + larger negative value.
-            if(!isOneNeg && isTwoNeg && isTwoLarger){
+            // State 5. Smaller positive value + larger negative value.
+            else if(!isOneNeg && isTwoNeg && !isOneLarger && isTwoLarger){
                 String twosCompx = deriveTwosCompliment(values[1]);
                 // While converting to 2s compliment a digit might get dropped.
                 String twosComp = commonUtils.padValue(twosCompx, values[0]);
@@ -95,8 +101,8 @@ public class Base2Maths {
                 result.replace(0, result.length(), commonUtils.trimLeadingZeros(result.toString()));
                 result.insert(0, "-");
             }
-            // State 5. Larger positive  value + small negative value.
-            if(!isOneNeg && isTwoNeg && isOneLarger){
+            // State 6. Larger positive  value + small negative value.
+            else if(!isOneNeg && isTwoNeg && isOneLarger && !isTwoLarger){
                 String twosCompx = deriveTwosCompliment(values[1]);
                 // While converting to 2s compliment a digit might get dropped.
                 String twosComp = commonUtils.padValue(twosCompx, values[0]);

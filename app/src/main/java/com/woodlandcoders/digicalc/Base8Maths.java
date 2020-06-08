@@ -43,8 +43,8 @@ public class Base8Maths {
         boolean isTwoLarger = isValueLarger8(values[1], values[0]);
 
         if(operatorFromUI.compareTo("Add") == 0){
-            // Now add based on 6 different state.
-            // State 1. Both values positive.  It doesn't matter which larger.
+            // Now add based on 7 different state.
+            // States 1 and 7. Both values positive.  It doesn't matter which larger.
             // ----------->>>  isOneNeg and isTwoNeg default to false
             //  So to be true isOneNeg and isTwoNeg have the "!" in front.
             if((!isOneNeg & !isTwoNeg) | (isOneNeg & isTwoNeg)){
@@ -56,8 +56,14 @@ public class Base8Maths {
                     result.deleteCharAt(0);
                 }
             }
-            // State 2. Large negative value - smaller positive value
-            if(isOneLarger & isOneNeg & !isTwoNeg){
+            // State 2. If both values are the same size (isOneLarger == false, isTwoLarger == false)
+            // and one or the other is negative. Its subtracting the same value from it's self. It
+            // will equal zero. 7 - 7 = 0
+            else if((!isOneLarger & !isTwoLarger) & ((isOneNeg & !isTwoNeg) || (!isOneNeg & isTwoNeg))){
+                result.insert(0, "0");
+            }
+            // State 3. Large negative value - smaller positive value
+            else if(isOneLarger & isOneNeg & !isTwoNeg){
                 String eightsCompx = deriveEightsCompliment(values[0]);
                 // While converting to 8s compliment a digit might get dropped.
                 String eightsComp = commonUtils.padValue(eightsCompx, values[1]);
@@ -66,16 +72,16 @@ public class Base8Maths {
                 result.replace(0, result.length(), commonUtils.trimLeadingZeros(result.toString()));
                 result.insert(0, "-");
             }
-            // State 3. Small negative value - larger positive value
-            if(isOneNeg & isTwoLarger & !isTwoNeg){
+            // State 4. Small negative value - larger positive value
+            else if(isOneNeg & isTwoLarger & !isTwoNeg){
                 String eightsCompx = deriveEightsCompliment(values[0]);
                 // While converting to 8s compliment a digit might get dropped.
                 String eightsComp = commonUtils.padValue(eightsCompx, values[1]);
                 result.insert(0, octalAdd(eightsComp, values[1], true));
                 result.replace(0, result.length(), commonUtils.trimLeadingZeros(result.toString()));
             }
-            // State 4. Smaller positive  value - larger negative value.
-            if(!isOneNeg & isTwoLarger & isTwoNeg){
+            // State 5. Smaller positive  value - larger negative value.
+            else if(!isOneNeg & isTwoLarger & isTwoNeg){
                 String eightsCompx = deriveEightsCompliment(values[1]);
                 // While converting to 8s compliment a digit might get dropped.
                 String eightsComp = commonUtils.padValue(eightsCompx, values[0]);
@@ -84,8 +90,8 @@ public class Base8Maths {
                 result.replace(0, result.length(), commonUtils.trimLeadingZeros(result.toString()));
                 result.insert(0, "-");
             }
-            // State 5. Larger positive  value - small negative value.
-            if(!isOneNeg & isOneLarger & isTwoNeg){
+            // State 6. Larger positive  value - small negative value.
+            else if(!isOneNeg & isOneLarger & isTwoNeg){
                 String eightsCompx = deriveEightsCompliment(values[1]);
                 // While converting to 8s compliment a digit might get dropped.
                 String eightsComp = commonUtils.padValue(eightsCompx, values[0]);

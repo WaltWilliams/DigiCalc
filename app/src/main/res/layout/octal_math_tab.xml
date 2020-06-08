@@ -1,29 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:backgroundTint="@color/design_default_color_background"
     tools:context=".OctMathTab">
 
 
     <EditText
         android:id="@+id/octEditText1"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:layout_marginEnd="20dp"
         android:digits="-12345670"
         android:ems="10"
         android:hint="@string/oct_hint"
         android:importantForAutofill="no"
         android:inputType="numberSigned"
-        android:maxLength="22"
+        android:maxLength="23"
         android:textColor="@android:color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -32,19 +32,19 @@
     <EditText
         android:id="@+id/octEditText2"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_below="@+id/octEditText1"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:layout_marginEnd="20dp"
         android:digits="-12345670"
         android:ems="10"
         android:hint="@string/oct_hint"
         android:importantForAutofill="no"
         android:inputType="number"
-        android:maxLength="22"
+        android:maxLength="23"
         android:textColor="@android:color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -57,7 +57,7 @@
         android:layout_below="@+id/octEditText2"
         android:layout_alignParentStart="true"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:background="@color/colorLight"
         android:theme="@style/SpinnerStyle"
         app:layout_constraintStart_toStartOf="parent"
@@ -71,7 +71,7 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="20dp"
         android:background="@color/colorLight"
         android:ems="10"
@@ -89,7 +89,7 @@
         android:layout_height="75dp"
         android:layout_below="@+id/octEditText2"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:layout_marginEnd="20dp"
         android:backgroundTint="@color/colorDevilRed"
         android:text="@string/execute"
@@ -99,9 +99,9 @@
 
     <Button
         android:id="@+id/octClearFieldButton"
-        android:layout_width="50dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="45dp"
+        android:layout_width="60dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="32dp"
         android:backgroundTint="@color/colorDevilRed"
         android:text="@string/clear"
         android:textColor="@color/colorYellow"
@@ -115,7 +115,26 @@
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-    </FrameLayout>
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <TextView
+        android:id="@+id/octCounterField1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/field1"
+        android:textColor="@android:color/black"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toTopOf="@+id/octEditText2"
+        app:layout_constraintEnd_toEndOf="@+id/octEditText1" />
+
+    <TextView
+        android:id="@+id/octCounterField2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/field2"
+        android:textColor="@android:color/black"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toTopOf="@+id/octButton"
+        app:layout_constraintEnd_toEndOf="@+id/octEditText2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
