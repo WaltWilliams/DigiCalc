@@ -14,7 +14,7 @@ public class Base8Maths {
     private Base8Maths() {
     }
 
-    CommonUtils commonUtils = CommonUtils.getInstance();
+    final CommonUtils commonUtils = CommonUtils.getInstance();
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // Octal math //////////////////////////////////////////////////////////////////////////////////////////////////
     protected String octalMath(String value1, String value2, String operatorFromUI){
@@ -28,6 +28,13 @@ public class Base8Maths {
         // 5) If either input was a negative zero the negative record is reset to false in that its not negative. 0 instead of -0
         // 6) Match length both input values by padding the shorter value with leading zeros.
         String[] values = commonUtils.prepValues(value1, value2);
+
+        // If one or both incoming values is empty - OR
+        // If one or both incoming values is simply "-". no number
+        // Immediately return with the statement "Missing value"
+        if(values[5].compareTo("0") == 0){
+            return "Missing value";
+        }
 
         // Making a boolean from the negative record from prepValues.
         boolean isOneNeg = false;
@@ -85,7 +92,7 @@ public class Base8Maths {
                 String eightsCompx = deriveEightsCompliment(values[1]);
                 // While converting to 8s compliment a digit might get dropped.
                 String eightsComp = commonUtils.padValue(eightsCompx, values[0]);
-                result.insert(0, octalAdd(values[0], eightsComp.toString(), true));
+                result.insert(0, octalAdd(values[0], eightsComp, true));
                 result.replace(0, result.length(), deriveEightsCompliment(result.toString()));
                 result.replace(0, result.length(), commonUtils.trimLeadingZeros(result.toString()));
                 result.insert(0, "-");
@@ -137,8 +144,6 @@ public class Base8Maths {
         // 0 through 7 being one possibility as you will simply insert 1 through 7.
         // 8, 9, 10, 11, 12, 13, 14, 15.
         for(int i = value1.length()-1; i >= 0; i--){
-            int o = Character.getNumericValue(value1.charAt(i));
-            int p = Character.getNumericValue(value2.charAt(i));
             tmp = Character.getNumericValue(value1.charAt(i)) + Character.getNumericValue(value2.charAt(i)) + carry;
 
             if(tmp == 0 | tmp == 1 | tmp == 2 | tmp == 3 | tmp == 4 | tmp == 5 | tmp == 6 | tmp == 7){
@@ -178,7 +183,7 @@ public class Base8Maths {
                 carry = 1;
             }
         }
-        if(carry == 1 & isSubtraction == false){
+        if(carry == 1 & !isSubtraction){
             result.insert(0, carry);
         }
         //result.replace(0, result.length(), Base2Maths.trimLeadingZeros(result.toString()));
@@ -271,8 +276,8 @@ public class Base8Maths {
             }
         }
         else{
-            row1.insert(0, String.valueOf(arr[0][1]));
-            row1.insert(0, String.valueOf(arr[0][0]));
+            row1.insert(0, arr[0][1]);
+            row1.insert(0, arr[0][0]);
         }
 
         return row1.toString();
@@ -424,7 +429,6 @@ public class Base8Maths {
     private String deriveEightsCompliment(String value) {
         StringBuilder result = new StringBuilder();
         int seven = 7;
-        int x = 0;
 
         if(value.length() == 1 & value.charAt(0) == '0'){
             return "0";

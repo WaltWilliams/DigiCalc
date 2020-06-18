@@ -9,7 +9,12 @@
 
 
     <!-- Text in views -->
-    <string name="instruct_convert">Enter your number in the field below and select the number type from the dropdown menu.</string>
+    <string name="zero64">0/64</string>
+    <string name="slash64">/64</string>
+    <string name="zero22">0/22</string>
+    <string name="slash22">/22</string>
+    <string name="zero16">0/16</string>
+    <string name="slash16">/16</string>
     <string name="value">Enter The Value You Want To Convert.</string>
     <string name="hex_hint">Enter Hexadecimal Value Here</string>
     <string name="oct_hint">Enter Octal Value Here</string>

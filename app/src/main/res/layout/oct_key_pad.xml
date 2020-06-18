@@ -1,31 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:backgroundTint="@color/design_default_color_background">
+    android:background="@color/colorWhite">
 
     <Button
         android:id="@+id/buttonForwardO"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
         android:layout_marginStart="4dp"
-        android:layout_marginEnd="20dp"
         android:backgroundTint="@color/colorDevilRed"
         android:text="@string/forward"
         android:textColor="@android:color/background_light"
-        android:textSize="18sp"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/buttonBackO" />
+        app:layout_constraintStart_toStartOf="@+id/guideline3O" />
 
     <Button
         android:id="@+id/buttonBackO"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
         android:layout_marginStart="4dp"
@@ -33,7 +31,7 @@
         android:backgroundTint="@color/colorDevilRed"
         android:text="@string/back"
         android:textColor="@android:color/background_light"
-        android:textSize="18sp"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline3O"
         app:layout_constraintStart_toStartOf="@+id/guideline1O" />
@@ -41,7 +39,7 @@
     <Button
         android:id="@+id/buttonDeleteO"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_marginStart="4dp"
@@ -49,7 +47,7 @@
         android:backgroundTint="@color/colorDevilRed"
         android:text="@string/del"
         android:textColor="@android:color/background_light"
-        android:textSize="18sp"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline1O"
         app:layout_constraintHorizontal_bias="1.0"
@@ -58,44 +56,45 @@
     <Button
         android:id="@+id/buttonTwoO"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:layout_marginStart="4dp"
         android:layout_marginEnd="4dp"
-        android:layout_marginBottom="4dp"
+        android:layout_marginBottom="8dp"
         android:backgroundTint="@color/colorDevilRed"
         android:text="@string/two"
         android:textColor="@color/colorYellow"
-        android:textSize="18sp"
+        android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/buttonSixO"
         app:layout_constraintEnd_toStartOf="@+id/guideline1O"
-        app:layout_constraintStart_toStartOf="@+id/guideline2O" />
+        app:layout_constraintStart_toStartOf="@+id/guideline2O"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/buttonThreeO"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:layout_marginStart="4dp"
         android:layout_marginEnd="4dp"
-        android:layout_marginBottom="4dp"
+        android:layout_marginBottom="8dp"
         android:backgroundTint="@color/colorDevilRed"
         android:text="@string/three"
         android:textColor="@color/colorYellow"
-        android:textSize="18sp"
+        android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/buttonSevenO"
         app:layout_constraintEnd_toStartOf="@+id/guideline3O"
-        app:layout_constraintStart_toStartOf="@+id/guideline1O" />
+        app:layout_constraintStart_toStartOf="@+id/guideline1O"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/buttonZeroO"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:layout_marginStart="4dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="4dp"
+        android:layout_marginBottom="8dp"
         android:backgroundTint="@color/colorDevilRed"
         android:text="@string/zero"
         android:textColor="@color/colorYellow"
-        android:textSize="18sp"
+        android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/buttonForwardO"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline3O" />
@@ -103,44 +102,43 @@
     <Button
         android:id="@+id/buttonOneO"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
+        android:layout_height="48dp"
         android:layout_marginEnd="4dp"
-        android:layout_marginBottom="4dp"
+        android:layout_marginBottom="8dp"
         android:backgroundTint="@color/colorDevilRed"
         android:text="@string/one"
         android:textColor="#F8F87C"
-        android:textSize="18sp"
+        android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/buttonFiveO"
         app:layout_constraintEnd_toStartOf="@+id/guideline2O"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/buttonFourO"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:layout_marginStart="4dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="4dp"
+        android:layout_marginBottom="8dp"
         android:backgroundTint="@color/colorDevilRed"
         android:text="@string/four"
         android:textColor="@color/colorYellow"
-        android:textSize="18sp"
+        android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/buttonZeroO"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/guideline3O" />
+        app:layout_constraintStart_toStartOf="@+id/guideline3O"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/buttonFiveO"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
+        android:layout_height="48dp"
         android:layout_marginEnd="4dp"
-        android:layout_marginBottom="4dp"
+        android:layout_marginBottom="8dp"
         android:backgroundTint="@color/colorDevilRed"
         android:text="@string/five"
         android:textColor="@color/colorYellow"
-        android:textSize="18sp"
+        android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/buttonMinusO"
         app:layout_constraintEnd_toStartOf="@+id/guideline2O"
         app:layout_constraintStart_toStartOf="parent" />
@@ -148,14 +146,14 @@
     <Button
         android:id="@+id/buttonSevenO"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:layout_marginStart="4dp"
         android:layout_marginEnd="4dp"
-        android:layout_marginBottom="4dp"
+        android:layout_marginBottom="8dp"
         android:backgroundTint="@color/colorDevilRed"
         android:text="@string/seven"
         android:textColor="@color/colorYellow"
-        android:textSize="18sp"
+        android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/buttonBackO"
         app:layout_constraintEnd_toStartOf="@+id/guideline3O"
         app:layout_constraintStart_toStartOf="@+id/guideline1O" />
@@ -163,15 +161,14 @@
     <Button
         android:id="@+id/buttonMinusO"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="20dp"
         android:layout_marginEnd="4dp"
         android:backgroundTint="@color/colorDevilRed"
         android:text="@string/minus"
         android:textColor="@android:color/background_light"
-        android:textSize="18sp"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline2O"
         app:layout_constraintStart_toStartOf="parent" />
@@ -179,37 +176,37 @@
     <Button
         android:id="@+id/buttonSixO"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="2dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="4dp"
         android:layout_marginEnd="4dp"
-        android:layout_marginBottom="4dp"
+        android:layout_marginBottom="8dp"
         android:backgroundTint="@color/colorDevilRed"
         android:text="@string/six"
         android:textColor="@color/colorYellow"
+        android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/buttonDeleteO"
         app:layout_constraintEnd_toStartOf="@+id/guideline1O"
-        app:layout_constraintStart_toStartOf="@+id/guideline2O"
-        android:textSize="18sp" />
+        app:layout_constraintStart_toStartOf="@+id/guideline2O" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline1O"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.50121653" />
+        app:layout_constraintGuide_percent="0.5" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2O"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent=".27" />
+        app:layout_constraintGuide_percent=".25" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline3O"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent=".72" />
+        app:layout_constraintGuide_percent=".75" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,7 +6,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 public class OctViewModel extends ViewModel {
-    private MutableLiveData<CharSequence> octDigit = new MutableLiveData<>();
+    private final MutableLiveData<CharSequence> octDigit = new MutableLiveData<>();
 
     public void insertOctDigit(CharSequence inDigit){
         octDigit.setValue(inDigit);

@@ -12,12 +12,12 @@ public class CommonUtils {
     }
 
     // Singleton constructor.
-    CommonUtils() {
+    private CommonUtils() {
     }
 
 
 
-    public DataContainer container = new DataContainer();
+    public final DataContainer container = new DataContainer();
 
     public DataContainer etBehavior(CharSequence cs, CharSequence et1, int cp, boolean isMinus, boolean isValue, boolean isBackSpace){
         StringBuilder sb = new StringBuilder(et1);
@@ -86,80 +86,89 @@ public class CommonUtils {
         return trimmed.toString();
     }
 
-
     // The purpose of this method is to remove the negative signs
     // and pad the left end of a value if its shorter.
     protected String[] prepValues(String value1, String value2){
-        String[] result = new String[5];
+        String[] result = new String[6];
+        // This is the "isEmpty" element. Defaulting it to empty.
+        result[5] = "0";
+        // This is the "isNeg" elements. Defaulting to positive.
         result[2] = "0";
         result[3] = "0";
         StringBuilder v1 = new StringBuilder(value1);
         StringBuilder v2 = new StringBuilder(value2);
 
-        // Analyzing each value for negative signs.
-        if(value1.charAt(0) == '-'){
-            result[2] = "1"; // 1 = it is negative or true.
-        }
-        if(value2.charAt(0) == '-'){
-            result[3] = "1"; //1 = it is negative or true.
-        }
+        // If an empty value was passed in don't enter this
+        // group of functions.
+        if(value1.length() != 0 && value2.length() != 0) {
+            // Analyzing each value for negative signs.
+            if (value1.charAt(0) == '-') {
+                result[2] = "1"; // 1 = it is negative or true.
+            }
+            if (value2.charAt(0) == '-') {
+                result[3] = "1"; //1 = it is negative or true.
+            }
 
-        // Removing all negative signs.
-        for(int m = 0; m < v1.length(); m++){
-            if(v1.charAt(m) == '-'){
-                v1.deleteCharAt(m);
+            // Removing all negative signs.
+            for (int m = 0; m < v1.length(); m++) {
+                if (v1.charAt(m) == '-') {
+                    v1.deleteCharAt(m);
+                }
+            }
+            for (int n = 0; n < v2.length(); n++) {
+                if (v2.charAt(n) == '-') {
+                    v2.deleteCharAt(n);
+                }
             }
         }
-        for(int n = 0; n < v2.length(); n++){
-            if(v2.charAt(n) == '-'){
-                v2.deleteCharAt(n);
+
+        // If only a negative sign was passed in for either value
+        // the negative sign was stripped off by the statements
+        // above. This will make either v1 or v2 empty.
+        // Don't proceed with the following statements below.
+        if (v1.length() != 0 && v2.length() != 0) {
+            // Trim off the excess zeros on the left so that a couple of
+            // clean determinations can be made.
+            if (v1.charAt(0) == '0') {
+                v1.replace(0, v1.length(), trimLeadingZeros(v1.toString()));
             }
-        }
+            if (v2.charAt(0) == '0') {
+                v2.replace(0, v2.length(), trimLeadingZeros(v2.toString()));
+            }
 
-        // Trim off the excess zeros on the left so that a couple of
-        //clean determinations can be made.
-        if(v1.charAt(0) == '0'){
-            v1.replace(0, v1.length(), trimLeadingZeros(v1.toString()));
-        }
-        if(v2.charAt(0) == '0'){
-            v2.replace(0, v2.length(), trimLeadingZeros(v2.toString()));
-        }
+            // If after trimming the excess leading zeros from the value(s), and it is
+            // a single zero and it was input as a negative value, it is no longer negative.
+            if ((v1.length() == 1) && (v1.charAt(0) == '0')) {
+                result[2] = "0";
+            }
+            if ((v2.length() == 1) && (v2.charAt(0) == '0')) {
+                result[3] = "0";
+            }
 
-        // If after trimming the excess leading zeros from the value(s), and it is
-        // a single zero and it was input as a negative value, it is no longer negative.
-        if((v1.length() == 1) && (v1.charAt(0) == '0')){
-            result[2] = "0";
-        }
-        if((v2.length() == 1) && (v2.charAt(0) == '0')){
-            result[3] = "0";
-        }
+            // For division this is the divisor length after trimming off the zeros
+            // before length matching with the dividend (v1)
+            result[4] = String.valueOf(v2.length());
 
-        // For division this is the divisor length after trimming off the zeros
-        // before length matching with the dividend (v1)
-        result[4] = String.valueOf(v2.length());
-
-        // Now to pad the smaller value with zeros on the left.
-        String value1a;
-        String value2a;
-        if(v1.length() < v2.length()){
-            value1a = padValue(v1.toString(), v2.toString());
-            value2a = v2.toString();
+            // Now to pad the smaller value with zeros on the left.
+            String value1a;
+            String value2a;
+            if (v1.length() < v2.length()) {
+                value1a = padValue(v1.toString(), v2.toString());
+                value2a = v2.toString();
+            } else if (v1.length() > v2.length()) {
+                value2a = padValue(v2.toString(), v1.toString());
+                value1a = v1.toString();
+            } else {
+                value1a = v1.toString();
+                value2a = v2.toString();
+            }
+            result[0] = value1a;
+            result[1] = value2a;
+            // If both values are NOT empty
+            result[5] = String.valueOf(1);
         }
-        else if(v1.length() > v2.length()){
-            value2a = padValue(v2.toString(), v1.toString());
-            value1a = v1.toString();
-        }
-        else{
-            value1a = v1.toString();
-            value2a = v2.toString();
-        }
-
-        result[0] = value1a;
-        result[1] = value2a;
-
         return result;
     }
-
 
     // This created the array for the multiplication functions.
     protected int[][] createMultiArray(int l){

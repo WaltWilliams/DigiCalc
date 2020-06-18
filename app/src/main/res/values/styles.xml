@@ -6,6 +6,8 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowBackground">@color/colorWhite</item>
+        <item name="android:textColorHint">@color/colorMedGrey</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
@@ -20,9 +22,9 @@
 
         <style name="SpinnerStyle"
             parent="@android:style/Widget.TextView.SpinnerItem">
-            <item name="android:textColor">@color/colorLight</item>
-            <item name="android:background">@color/colorDevilRed</item>
-            <item name="android:popupBackground">@color/colorDevilRed</item>
+            <item name="android:textColor">@color/colorBlack</item>
+            <item name="android:background">@color/colorLight</item>
+            <item name="android:popupBackground">@color/colorLight</item>
 
         </style>
 

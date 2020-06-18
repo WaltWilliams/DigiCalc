@@ -19,19 +19,15 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import java.util.Objects;
+
 /**
  * A simple {@link Fragment} subclass.
  */
 public class BinMathTab extends Fragment implements AdapterView.OnItemSelectedListener {
 
-    private BinViewModel binViewModel;
-    // The Child Fragment.
-    private BinKeyPad binKeyPad;
-
     private CommonUtils commonUtils;
 
-    private Button execButton;
-    private Button clr;
     private Spinner binSp;
     private EditText editText1;
     private EditText editText2;
@@ -53,12 +49,13 @@ public class BinMathTab extends Fragment implements AdapterView.OnItemSelectedLi
         final Base2Maths maths = Base2Maths.getInstance();
         commonUtils = CommonUtils.getInstance();
 
-        execButton = view.findViewById(R.id.binButton);
-        clr = view.findViewById(R.id.binClearFieldButton);
+        Button execButton = view.findViewById(R.id.binButton);
+        Button clr = view.findViewById(R.id.binClearFieldButton);
         resultTextView = view.findViewById(R.id.binAnswer);
 
         // Inserting keyboard fragment.
-        binKeyPad = new BinKeyPad();
+        // The Child Fragment.
+        BinKeyPad binKeyPad = new BinKeyPad();
         FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
         transaction.add(R.id.binKeyFrame, binKeyPad).commit();
 
@@ -74,30 +71,24 @@ public class BinMathTab extends Fragment implements AdapterView.OnItemSelectedLi
         // Counter fields.
         binCtField1 = view.findViewById(R.id.binCounterField1);
         binCtField2 = view.findViewById(R.id.binCounterField2);
-        binCtField1.setText("0/64");
-        binCtField2.setText("0/64");
+        binCtField1.setText(R.string.zero64);
+        binCtField2.setText(R.string.zero64);
 
         // Spinner functionality stuff.
         binSp = view.findViewById(R.id.binSp);
-        ArrayAdapter<CharSequence> adapter  = ArrayAdapter.createFromResource(this.getActivity(), R.array.operators, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapter  = ArrayAdapter.createFromResource(Objects.requireNonNull(this.getActivity()), R.array.operators, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         binSp.setAdapter(adapter);
         binSp.setOnItemSelectedListener(this);
 
         // The execute button.
         execButton.setOnClickListener(new View.OnClickListener() {
-            String s;
+            // --Commented out by Inspection (6/11/20 5:50 PM):String s;
             @Override
             public void onClick(View v) {
-                if((editText1.length() != 0) && (editText2.length() != 0)){
-                    String s1 = String.valueOf(editText1.getText());
-                    String s2 = String.valueOf(editText2.getText());
-                    s = maths.binMath(s1, s2, selection);
-                }
-                else{
-                    s = "Missing value";
-                }
-                resultTextView.setText(s);
+                String s1 = String.valueOf(editText1.getText());
+                String s2 = String.valueOf(editText2.getText());
+                resultTextView.setText(maths.binMath(s1, s2, selection));
             }
         });
 
@@ -107,8 +98,8 @@ public class BinMathTab extends Fragment implements AdapterView.OnItemSelectedLi
                 editText1.getText().clear();
                 editText2.getText().clear();
                 resultTextView.setText("");
-                binCtField1.setText("0/64");
-                binCtField2.setText("0/64");
+                binCtField1.setText(R.string.zero64);
+                binCtField2.setText(R.string.zero64);
             }
         });
         return view;
@@ -122,7 +113,7 @@ public class BinMathTab extends Fragment implements AdapterView.OnItemSelectedLi
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        binViewModel = new ViewModelProvider(getActivity()).get(BinViewModel.class);
+        BinViewModel binViewModel = new ViewModelProvider(Objects.requireNonNull(getActivity())).get(BinViewModel.class);
         binViewModel.getBinDigit().observe(getViewLifecycleOwner(), new Observer<CharSequence>() {
             @Override
             public void onChanged(CharSequence charSequence) {
@@ -152,7 +143,9 @@ public class BinMathTab extends Fragment implements AdapterView.OnItemSelectedLi
                         DataContainer container = commonUtils.etBehavior(charSequence, et1, cursorPosition, isMinus, isValue, isBackSpace);
                         editText1.setText(container.cs);
                         editText1.setSelection(container.pos);
-                        binCtField1.setText(editText1.getSelectionStart() + "/64");
+                        // Android Studio doesn't like concatenation inside .setText methods
+                        String countVal1 = editText1.getSelectionStart() + getString(R.string.slash64);
+                        binCtField1.setText(countVal1);
                     }
                 }
                 if(editText2.length() < 64| isMinus | isBackSpace | isArrow){
@@ -163,7 +156,9 @@ public class BinMathTab extends Fragment implements AdapterView.OnItemSelectedLi
                         DataContainer container = commonUtils.etBehavior(charSequence, et2, cursorPosition, isMinus, isValue, isBackSpace);
                         editText2.setText(container.cs);
                         editText2.setSelection(container.pos);
-                        binCtField2.setText(editText2.getSelectionStart() + "/64");
+                        // Android Studio doesn't like concatenation inside .setText methods
+                        String countVal2 = editText2.getSelectionStart() + getString(R.string.slash64);
+                        binCtField2.setText(countVal2);
                     }
                 }
             }
@@ -177,6 +172,7 @@ public class BinMathTab extends Fragment implements AdapterView.OnItemSelectedLi
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
         selection = adapterView.getItemAtPosition(i).toString();
+
         binSp.setSelection(i);
 
         if(selection.compareTo("Add") == 0){
@@ -201,7 +197,7 @@ public class BinMathTab extends Fragment implements AdapterView.OnItemSelectedLi
     @Override
     public void onStart() {
         super.onStart();
-        getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+        Objects.requireNonNull(getActivity()).getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
     }
 
 

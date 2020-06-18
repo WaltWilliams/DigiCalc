@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite"
+    tools:context=".OctMathTab">
+
+
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineOct"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.459">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/octEditText1"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="8dp"
+                android:digits="-12345670"
+                android:ems="10"
+                android:hint="@string/oct_hint"
+                android:importantForAutofill="no"
+                android:inputType="numberSigned"
+                android:maxLength="23"
+                android:textColor="@android:color/black"
+                android:textColorHint="@android:color/tertiary_text_light"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/octCounterField1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/field1"
+                android:textColor="@android:color/black"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toTopOf="@+id/octEditText2"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <EditText
+                android:id="@+id/octEditText2"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_below="@+id/octEditText1"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:digits="-12345670"
+                android:ems="10"
+                android:hint="@string/oct_hint"
+                android:importantForAutofill="no"
+                android:inputType="number"
+                android:maxLength="23"
+                android:textColor="@android:color/black"
+                android:textColorHint="@android:color/tertiary_text_light"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/octEditText1" />
+
+            <TextView
+                android:id="@+id/octCounterField2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/field2"
+                android:textColor="@android:color/black"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toTopOf="@+id/octButton"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <Spinner
+                android:id="@+id/octSp"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_below="@+id/octEditText2"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:background="@color/colorLight"
+                android:theme="@style/SpinnerStyle"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/octEditText2" />
+
+            <Button
+                android:id="@+id/octButton"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_below="@+id/octEditText2"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="8dp"
+                android:backgroundTint="@color/colorDevilRed"
+                android:text="@string/execute"
+                android:textColor="@color/colorYellow"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/octEditText2" />
+
+            <Button
+                android:id="@+id/octClearFieldButton"
+                android:layout_width="60dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="8dp"
+                android:backgroundTint="@color/colorDevilRed"
+                android:text="@string/clear"
+                android:textColor="@color/colorYellow"
+                app:layout_constraintEnd_toStartOf="@+id/octButton"
+                app:layout_constraintStart_toEndOf="@+id/octSp"
+                app:layout_constraintTop_toBottomOf="@+id/octEditText2" />
+
+            <TextView
+                android:id="@+id/octAnswer"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/octButton"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:background="@color/colorLight"
+                android:ems="10"
+                android:hint="@string/answer"
+                android:importantForAutofill="no"
+                android:textColor="@android:color/black"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/octClearFieldButton"
+                app:layout_constraintVertical_bias="0.57" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+    <FrameLayout
+        android:id="@+id/octKeyFrame"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guidelineOct"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineOct"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent=".5" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

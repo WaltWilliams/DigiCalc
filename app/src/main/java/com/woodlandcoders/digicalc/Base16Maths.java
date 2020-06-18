@@ -17,7 +17,7 @@ public class Base16Maths {
     private Base16Maths() {
     }
 
-    CommonUtils commonUtils = CommonUtils.getInstance();
+    final CommonUtils commonUtils = CommonUtils.getInstance();
     ///////////////////////////////////////////////////////////////////////////////////////////////
     // Hexadecimal math ///////////////////////////////////////////////////////////////////////////
     protected String hexMath(String value1, String value2, String operatorFromUI){
@@ -32,6 +32,13 @@ public class Base16Maths {
         // 5) If either input was a negative zero the negative record is reset to false in that its not negative. 0 instead of -0
         // 6) Match length both input values by padding the shorter value with leading zeros.
         String[] values = commonUtils.prepValues(value1, value2);
+
+        // If one or both incoming values is empty - OR
+        // If one or both incoming values is simply "-". no number
+        // Immediately return with the statement "Missing value"
+        if(values[5].compareTo("0") == 0){
+            return "Missing value";
+        }
 
         // Making a boolean from the negative record from prepValues.
         boolean isOneNeg = false;
@@ -253,7 +260,7 @@ public class Base16Maths {
         }
 
         if(carry != 0 && !subSwitch){
-            result.insert(0, getHexFromDecimal(new Integer(carry)));
+            result.insert(0, getHexFromDecimal(carry));
         }
 
         return result.toString();
@@ -281,7 +288,7 @@ public class Base16Maths {
         int carry = 0;
         // First setup a 2D array to hold the multiplied items.
         int s = 0;
-        int arr[][] = commonUtils.createMultiArray(l);
+        int[][] arr = commonUtils.createMultiArray(l);
 
         // "i" steps through value2 from right to left.
         // "h" steps through value1 from right to left.
@@ -328,8 +335,6 @@ public class Base16Maths {
             // The outer for loop traverses down the 'arr' rows.
             for (int g = 2; g < l; g++) {
                 for (int j = (l * 2) - 1; j >= 0; j--) {
-                    int x1 = tmpResults[j];
-                    int x2 = arr[g][j];
                     // This should automatically include the final carry in tmpResults.
                     int tmp = tmpResults[j] + arr[g][j] + carry;
                     tmpResults[j] = tmp % 16;

@@ -14,11 +14,12 @@ public class Base2Maths {
     private Base2Maths() {
     }
 
-    CommonUtils commonUtils = CommonUtils.getInstance();
+    final CommonUtils commonUtils = CommonUtils.getInstance();
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // Binary math //////////////////////////////////////////////////////////////////////////////////////////////////
     protected String binMath(String value1, String value2, String operatorFromUI){
         StringBuilder result = new StringBuilder();
+
 
 
         // PrepValues does the following
@@ -29,6 +30,14 @@ public class Base2Maths {
         // 5) If either input was a negative zero the negative record is reset to false in that its not negative. 0 instead of -0
         // 6) Match length both input values by padding the shorter value with leading zeros.
         String[] values = commonUtils.prepValues(value1, value2);
+
+        // If one or both incoming values is empty
+        // If one or both incoming values is simply "-". no number
+        // Immediately return with the statement "Missing value"
+        if(values[5].compareTo("0") == 0){
+            return "Missing value";
+        }
+
 
         // Making a boolean from the negative record from prepValues. Index 2 and 3
         boolean isOneNeg = false;
@@ -161,8 +170,6 @@ public class Base2Maths {
         StringBuilder value2a = new StringBuilder(commonUtils.padValue(value2, value1));
 
         for(int i = value1.length()-1; i >= 0; i--){
-            int f = Character.getNumericValue(value1.charAt(i));
-            int g = Character.getNumericValue(value2a.charAt(i));
             tmp = Character.getNumericValue(value1.charAt(i)) + Character.getNumericValue(value2a.charAt(i)) + carry;
             // 1 + 1 + carry (1)
             if(tmp == 3){

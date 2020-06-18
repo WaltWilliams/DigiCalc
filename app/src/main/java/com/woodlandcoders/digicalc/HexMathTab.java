@@ -18,18 +18,14 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import java.util.Objects;
+
 
 public class HexMathTab extends Fragment implements AdapterView.OnItemSelectedListener {
 // The OnItemSelectedListener is for the spinner
 
-    private HexViewModel hexViewModel;
-    // The Child Fragment.
-    private HexKeyPad hexKeyPad;
-
     private CommonUtils commonUtils;
 
-    private Button execButton;
-    private Button clr;
     private Spinner hexSp;
     private EditText editText1;
     private EditText editText2;
@@ -43,8 +39,6 @@ public class HexMathTab extends Fragment implements AdapterView.OnItemSelectedLi
         // Empty constructor.
     }
 
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.hex_math_tab, container, false);
@@ -54,12 +48,13 @@ public class HexMathTab extends Fragment implements AdapterView.OnItemSelectedLi
         commonUtils = CommonUtils.getInstance();
 
         // Inserting keyboard fragment.
-        hexKeyPad = new HexKeyPad();
+        // The Child Fragment.
+        HexKeyPad hexKeyPad = new HexKeyPad();
         FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
         transaction.add(R.id.hexKeyFrame, hexKeyPad).commit();
 
-        execButton = view.findViewById(R.id.hexButton);
-        clr = view.findViewById(R.id.hexClearFieldButton);
+        Button execButton = view.findViewById(R.id.hexButton);
+        Button clr = view.findViewById(R.id.hexClearFieldButton);
         resultTextView = view.findViewById(R.id.hexAnswer);
 
         editText1 = view.findViewById(R.id.hexEditText1);
@@ -73,31 +68,27 @@ public class HexMathTab extends Fragment implements AdapterView.OnItemSelectedLi
         // Counter fields.
         hexCtField1 = view.findViewById(R.id.hexCounterField1);
         hexCtField2 = view.findViewById(R.id.hexCounterField2);
-        hexCtField1.setText("0/16");
-        hexCtField2.setText("0/16");
+        hexCtField1.setText(R.string.zero16);
+        hexCtField2.setText(R.string.zero16);
 
 
         // Spinner functionality stuff.
         hexSp = view.findViewById(R.id.hexSp);
-        ArrayAdapter<CharSequence> adapter  = ArrayAdapter.createFromResource(this.getActivity(), R.array.operators, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapter  = ArrayAdapter.createFromResource(Objects.requireNonNull(this.getActivity()), R.array.operators, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         hexSp.setAdapter(adapter);
         hexSp.setOnItemSelectedListener(this);
 
         // The execute button.
         execButton.setOnClickListener(new View.OnClickListener() {
-            String s;
+            // --Commented out by Inspection (6/11/20 5:50 PM):String s;
+
             @Override
             public void onClick(View v) {
-                if((editText1.length() != 0) && (editText2.length() != 0)){
-                    String s1 = String.valueOf(editText1.getText());
-                    String s2 = String.valueOf(editText2.getText());
-                    s = maths.hexMath(s1, s2, selection);
-                }
-                else{
-                    s = "Missing value";
-                }
-                resultTextView.setText(s);
+
+                String s1 = String.valueOf(editText1.getText());
+                String s2 = String.valueOf(editText2.getText());
+                resultTextView.setText(maths.hexMath(s1, s2, selection));
             }
         });
 
@@ -107,8 +98,8 @@ public class HexMathTab extends Fragment implements AdapterView.OnItemSelectedLi
                 editText1.getText().clear();
                 editText2.getText().clear();
                 resultTextView.setText("");
-                hexCtField1.setText("0/16");
-                hexCtField2.setText("0/16");
+                hexCtField1.setText(R.string.zero16);
+                hexCtField2.setText(R.string.zero16);
             }
         });
 
@@ -123,7 +114,7 @@ public class HexMathTab extends Fragment implements AdapterView.OnItemSelectedLi
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        hexViewModel = new ViewModelProvider(getActivity()).get(HexViewModel.class);
+        HexViewModel hexViewModel = new ViewModelProvider(Objects.requireNonNull(getActivity())).get(HexViewModel.class);
         hexViewModel.getHexDigit().observe(getViewLifecycleOwner(), new Observer<CharSequence>() {
             @Override
             public void onChanged(CharSequence charSequence) {
@@ -168,7 +159,9 @@ public class HexMathTab extends Fragment implements AdapterView.OnItemSelectedLi
                         DataContainer container = commonUtils.etBehavior(charSequence, et1, cp, isMinus, isValue, isBackSpace);
                         editText1.setText(container.cs);
                         editText1.setSelection(container.pos);
-                        hexCtField1.setText(editText1.getSelectionStart() + "/16");
+                        // Android Studio doesn't like concatenation inside .setText methods
+                        String countVal1 = editText1.getSelectionStart() + getString(R.string.slash16);
+                        hexCtField1.setText(countVal1);
                     }
                 }
                 if(editText2.length() < 16 | isMinus | isBackSpace | isArrow){
@@ -179,7 +172,9 @@ public class HexMathTab extends Fragment implements AdapterView.OnItemSelectedLi
                         DataContainer container = commonUtils.etBehavior(charSequence, et2, cp, isMinus, isValue, isBackSpace);
                         editText2.setText(container.cs);
                         editText2.setSelection(container.pos);
-                        hexCtField2.setText(editText2.getSelectionStart() + "/16");
+                        // Android Studio doesn't like concatenation inside .setText methods
+                        String countVal2 = editText2.getSelectionStart() + getString(R.string.slash16);
+                        hexCtField2.setText(countVal2);
                     }
                 }
             }
@@ -218,7 +213,7 @@ public class HexMathTab extends Fragment implements AdapterView.OnItemSelectedLi
     // Turns off the soft keyboard on start up or when the activity comes into view
     public void onStart() {
         super.onStart();
-        getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+        Objects.requireNonNull(getActivity()).getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
     }
 
 }

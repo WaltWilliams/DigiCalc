@@ -6,4 +6,7 @@
     <color name="colorLight">#FFECE5</color>
     <color name="colorDevilRed">#8E0F0F</color>
     <color name="colorYellow">#F8F863</color>
+    <color name="colorWhite">#FFFFFF</color>
+    <color name="colorMedGrey">#7D7D7D</color>
+    <color name="colorBlack">#000000</color>
 </resources>

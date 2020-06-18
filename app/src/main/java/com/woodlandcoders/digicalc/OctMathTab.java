@@ -18,18 +18,14 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import java.util.Objects;
+
 
 public class OctMathTab extends Fragment implements AdapterView.OnItemSelectedListener {
 // The OnItemSelectedListener is for the spinner
 
-    private OctViewModel octViewModel;
-    // The Child Fragment.
-    private OctKeyPad octKeyPad;
-
     private CommonUtils commonUtils;
 
-    private Button execButton;
-    private Button clr;
     private Spinner octSp;
     private EditText editText1;
     private EditText editText2;
@@ -52,12 +48,13 @@ public class OctMathTab extends Fragment implements AdapterView.OnItemSelectedLi
 
         commonUtils = CommonUtils.getInstance();
 
-        execButton = view.findViewById(R.id.octButton);
-        clr = view.findViewById(R.id.octClearFieldButton);
+        Button execButton = view.findViewById(R.id.octButton);
+        Button clr = view.findViewById(R.id.octClearFieldButton);
         resultTextView = view.findViewById(R.id.octAnswer);
 
         // Inserting keyboard fragment.
-        octKeyPad = new OctKeyPad();
+        // The Child Fragment.
+        OctKeyPad octKeyPad = new OctKeyPad();
         FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
         transaction.add(R.id.octKeyFrame, octKeyPad).commit();
 
@@ -74,30 +71,25 @@ public class OctMathTab extends Fragment implements AdapterView.OnItemSelectedLi
         // Counter fields.
         octCtField1 = view.findViewById(R.id.octCounterField1);
         octCtField2 = view.findViewById(R.id.octCounterField2);
-        octCtField1.setText("0/22");
-        octCtField2.setText("0/22");
+        octCtField1.setText(R.string.zero22);
+        octCtField2.setText(R.string.zero22);
 
         // Spinner functionality stuff.
         octSp = view.findViewById(R.id.octSp);
-        ArrayAdapter<CharSequence> adapter  = ArrayAdapter.createFromResource(this.getActivity(), R.array.operators, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapter  = ArrayAdapter.createFromResource(Objects.requireNonNull(this.getActivity()), R.array.operators, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         octSp.setAdapter(adapter);
         octSp.setOnItemSelectedListener(this);
 
         // The execute button.
         execButton.setOnClickListener(new View.OnClickListener() {
-            String s;
+            // --Commented out by Inspection (6/11/20 5:50 PM):String s;
+
             @Override
             public void onClick(View v) {
-                if((editText1.length() != 0) && (editText2.length() != 0)){
-                    String s1 = String.valueOf(editText1.getText());
-                    String s2 = String.valueOf(editText2.getText());
-                    s = maths.octalMath(s1, s2, selection);
-                }
-                else{
-                    s = "Missing value";
-                }
-                resultTextView.setText(s);
+                String s1 = String.valueOf(editText1.getText());
+                String s2 = String.valueOf(editText2.getText());
+                resultTextView.setText(maths.octalMath(s1, s2, selection));
             }
         });
 
@@ -107,8 +99,8 @@ public class OctMathTab extends Fragment implements AdapterView.OnItemSelectedLi
                 editText1.getText().clear();
                 editText2.getText().clear();
                 resultTextView.setText("");
-                octCtField1.setText("0/22");
-                octCtField2.setText("0/22");
+                octCtField1.setText(R.string.zero22);
+                octCtField2.setText(R.string.zero22);
             }
         });
 
@@ -123,7 +115,7 @@ public class OctMathTab extends Fragment implements AdapterView.OnItemSelectedLi
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        octViewModel = new ViewModelProvider(getActivity()).get(OctViewModel.class);
+        OctViewModel octViewModel = new ViewModelProvider(Objects.requireNonNull(getActivity())).get(OctViewModel.class);
         octViewModel.getOctDigit().observe(getViewLifecycleOwner(), new Observer<CharSequence>() {
             @Override
             public void onChanged(CharSequence charSequence) {
@@ -160,7 +152,9 @@ public class OctMathTab extends Fragment implements AdapterView.OnItemSelectedLi
                         DataContainer container = commonUtils.etBehavior(charSequence, et1, cp, isMinus, isValue, isBackSpace);
                         editText1.setText(container.cs);
                         editText1.setSelection(container.pos);
-                        octCtField1.setText(editText1.getSelectionStart() + "/22");
+                        // Android Studio doesn't like concatenation inside .setText methods
+                        String countVal1 = editText1.getSelectionStart() + getString(R.string.slash22);
+                        octCtField1.setText(countVal1);
                     }
                 }
                 if(editText2.length() < 22 | isMinus | isBackSpace | isArrow) {
@@ -171,7 +165,9 @@ public class OctMathTab extends Fragment implements AdapterView.OnItemSelectedLi
                         DataContainer container = commonUtils.etBehavior(charSequence, et2, cp, isMinus, isValue, isBackSpace);
                         editText2.setText(container.cs);
                         editText2.setSelection(container.pos);
-                        octCtField2.setText(editText2.getSelectionStart() + "/22");
+                        // Android Studio doesn't like concatenation inside .setText methods
+                        String countVal2 = editText2.getSelectionStart() + getString(R.string.slash22);
+                        octCtField2.setText(countVal2);
                     }
                 }
             }
@@ -211,7 +207,7 @@ public class OctMathTab extends Fragment implements AdapterView.OnItemSelectedLi
     @Override
     public void onStart() {
         super.onStart();
-        getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+        Objects.requireNonNull(getActivity()).getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
     }
 
 
