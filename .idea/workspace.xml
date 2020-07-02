@@ -12,55 +12,25 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
+    <option name="TOOL_WINDOW_LOG_LEVEL" value="verbose" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a56571eb-dd8b-40b6-872e-6ee1243dec9d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout-land/activity_main.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout-land/bin_math_tab.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout-land/hex_math_tab.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout-land/octal_math_tab.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout-sw600dp/bin_math_tab.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout-sw600dp/hex_math_tab.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout-sw600dp/octal_math_tab.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/woodlandcoders/digicalc/Non_SDK.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/app/app.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/release/app-release.aab" beforeDir="false" afterPath="$PROJECT_DIR$/app/release/app-release.aab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/woodlandcoders/digicalc/Base16Maths.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/woodlandcoders/digicalc/Base16Maths.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/woodlandcoders/digicalc/Base2Maths.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/woodlandcoders/digicalc/Base2Maths.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/woodlandcoders/digicalc/Base8Maths.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/woodlandcoders/digicalc/Base8Maths.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/woodlandcoders/digicalc/BinMathTab.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/woodlandcoders/digicalc/BinMathTab.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/woodlandcoders/digicalc/BinViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/woodlandcoders/digicalc/BinViewModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/woodlandcoders/digicalc/CommonUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/woodlandcoders/digicalc/CommonUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/woodlandcoders/digicalc/HexMathTab.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/woodlandcoders/digicalc/HexMathTab.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/woodlandcoders/digicalc/HexViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/woodlandcoders/digicalc/HexViewModel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/woodlandcoders/digicalc/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/woodlandcoders/digicalc/MainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/woodlandcoders/digicalc/OctMathTab.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/woodlandcoders/digicalc/OctMathTab.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/woodlandcoders/digicalc/OctViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/woodlandcoders/digicalc/OctViewModel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/bin_key_pad.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/bin_key_pad.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/bin_math_tab.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/bin_math_tab.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/bin_math_tab1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/conv_tab.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/hex_key_pad.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/hex_key_pad.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/hex_math_tab.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/hex_math_tab.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/home_tab.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/home_tab.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/oct_key_pad.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/oct_key_pad.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/octal_math_tab.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/octal_math_tab.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/styles.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/styles.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="G4AZCY01W670" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="Nexus_5X_API_30" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -116,11 +86,14 @@
     <property name="AnalyzeApkAction.lastApkPath" value="$USER_HOME$" />
     <property name="ApkExportedModule" value="app" />
     <property name="BundleExportedModule" value="app" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="Nexus_5X_API_30" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2020-06-26T21:51:02.314Z" />
     <property name="ExportApk.ApkPath" value="$PROJECT_DIR$/app" />
     <property name="ExportApk.BuildVariants" value="release" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="android.sdk.path" value="$USER_HOME$/Android/Sdk" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Android" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="memory.settings.postsync.do.not.ask.for.project" value="true" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.17" />
@@ -336,21 +309,25 @@
       <screen x="0" y="0" width="1920" height="1174" />
     </state>
     <state x="743" y="332" width="426" height="514" key="FileChooserDialogImpl/0.0.1920.1174@0.0.1920.1174" timestamp="1592001381524" />
-    <state width="1878" height="316" key="GridCell.Tab.0.bottom" timestamp="1592059952496">
-      <screen x="0" y="0" width="1920" height="1174" />
+    <state width="1314" height="388" key="GridCell.Tab.0.bottom" timestamp="1593720867895">
+      <screen x="0" y="0" width="1366" height="742" />
     </state>
+    <state width="1314" height="388" key="GridCell.Tab.0.bottom/0.0.1366.742@0.0.1366.742" timestamp="1593720867895" />
     <state width="1878" height="316" key="GridCell.Tab.0.bottom/0.0.1920.1174@0.0.1920.1174" timestamp="1592059952496" />
-    <state width="1878" height="316" key="GridCell.Tab.0.center" timestamp="1592059952495">
-      <screen x="0" y="0" width="1920" height="1174" />
+    <state width="1314" height="388" key="GridCell.Tab.0.center" timestamp="1593720867895">
+      <screen x="0" y="0" width="1366" height="742" />
     </state>
+    <state width="1314" height="388" key="GridCell.Tab.0.center/0.0.1366.742@0.0.1366.742" timestamp="1593720867895" />
     <state width="1878" height="316" key="GridCell.Tab.0.center/0.0.1920.1174@0.0.1920.1174" timestamp="1592059952495" />
-    <state width="1878" height="316" key="GridCell.Tab.0.left" timestamp="1592059952495">
-      <screen x="0" y="0" width="1920" height="1174" />
+    <state width="1314" height="388" key="GridCell.Tab.0.left" timestamp="1593720867894">
+      <screen x="0" y="0" width="1366" height="742" />
     </state>
+    <state width="1314" height="388" key="GridCell.Tab.0.left/0.0.1366.742@0.0.1366.742" timestamp="1593720867894" />
     <state width="1878" height="316" key="GridCell.Tab.0.left/0.0.1920.1174@0.0.1920.1174" timestamp="1592059952495" />
-    <state width="1878" height="316" key="GridCell.Tab.0.right" timestamp="1592059952496">
-      <screen x="0" y="0" width="1920" height="1174" />
+    <state width="1314" height="388" key="GridCell.Tab.0.right" timestamp="1593720867895">
+      <screen x="0" y="0" width="1366" height="742" />
     </state>
+    <state width="1314" height="388" key="GridCell.Tab.0.right/0.0.1366.742@0.0.1366.742" timestamp="1593720867895" />
     <state width="1878" height="316" key="GridCell.Tab.0.right/0.0.1920.1174@0.0.1920.1174" timestamp="1592059952496" />
     <state width="1878" height="506" key="GridCell.Tab.1.bottom" timestamp="1592015885460">
       <screen x="0" y="0" width="1920" height="1174" />
@@ -376,13 +353,15 @@
       <screen x="0" y="0" width="1920" height="1174" />
     </state>
     <state x="807" y="507" width="297" height="165" key="VCS.ChangelistChooser/0.0.1920.1174@0.0.1920.1174" timestamp="1592059927940" />
-    <state x="99" y="100" width="1722" height="975" key="com.android.tools.idea.avdmanager.AvdListDialog" timestamp="1592007129230">
-      <screen x="0" y="0" width="1920" height="1174" />
+    <state x="70" y="63" width="1226" height="617" key="com.android.tools.idea.avdmanager.AvdListDialog" timestamp="1593208255007">
+      <screen x="0" y="0" width="1366" height="742" />
     </state>
+    <state x="70" y="63" width="1226" height="617" key="com.android.tools.idea.avdmanager.AvdListDialog/0.0.1366.742@0.0.1366.742" timestamp="1593208255007" />
     <state x="99" y="100" width="1722" height="975" key="com.android.tools.idea.avdmanager.AvdListDialog/0.0.1920.1174@0.0.1920.1174" timestamp="1592007129230" />
-    <state x="630" y="414" key="com.intellij.ide.util.TipDialog" timestamp="1592059763527">
-      <screen x="0" y="0" width="1920" height="1174" />
+    <state x="448" y="262" key="com.intellij.ide.util.TipDialog" timestamp="1593720551336">
+      <screen x="0" y="0" width="1366" height="742" />
     </state>
+    <state x="448" y="262" key="com.intellij.ide.util.TipDialog/0.0.1366.742@0.0.1366.742" timestamp="1593720551336" />
     <state x="630" y="414" key="com.intellij.ide.util.TipDialog/0.0.1920.1174@0.0.1920.1174" timestamp="1592059763527" />
   </component>
 </project>
