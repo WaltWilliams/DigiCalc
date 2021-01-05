@@ -188,6 +188,8 @@ public class BinMathTab extends Fragment implements AdapterView.OnItemSelectedLi
             editText2.setHint("Divisor");
         }
     }
+
+
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
 

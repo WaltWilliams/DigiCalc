@@ -34,7 +34,9 @@ public class CommonUtils {
             }
             else if(sb.charAt(0) == '-'){
                 sb.replace(0, 1, "");
-                cp--;
+                if(cp > 0){
+                    cp--;
+                }
             }
         }
 
