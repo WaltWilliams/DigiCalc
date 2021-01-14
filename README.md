@@ -14,7 +14,7 @@ expected and, did so quickly. :muscle:
 
 ### Published
 This application has been published on Google Play and has received a positive rating with a 
-feature suggestion. (I plan to include it.)
+feature suggestion which I am currently working on.
  
 
 #### Note to Potential Employers
