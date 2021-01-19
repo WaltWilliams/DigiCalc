@@ -13,27 +13,13 @@ import androidx.lifecycle.ViewModelProvider;
 
 public class HexKeyPad extends Fragment implements View.OnClickListener {
 
-    private Button oneButton;
-    private Button twoButton;
-    private Button threeButton;
-    private Button fourButton;
-    private Button fiveButton;
-    private Button sixButton;
-    private Button sevenButton;
-    private Button eightButton;
-    private Button nineButton;
     private Button aButton;
     private Button bButton;
     private Button cButton;
     private Button dButton;
     private Button eButton;
     private Button fButton;
-    private Button zeroButton;
-    private Button minusButton;
-    private Button deleteButton;
-    private Button backButton;
-    private Button forwardButton;
-
+    private boolean isUpperCase;
 
     private HexViewModel hexViewModel;
 
@@ -49,27 +35,45 @@ public class HexKeyPad extends Fragment implements View.OnClickListener {
         hexViewModel = new ViewModelProvider(getActivity()).get(HexViewModel.class);
 
 
-        oneButton = view.findViewById(R.id.buttonOneH);
-        twoButton = view.findViewById(R.id.buttonTwoH);
-        threeButton = view.findViewById(R.id.buttonThreeH);
-        fourButton = view.findViewById(R.id.buttonFourH);
-        fiveButton = view.findViewById(R.id.buttonFiveH);
-        sixButton = view.findViewById(R.id.buttonSixH);
-        sevenButton = view.findViewById(R.id.buttonSevenH);
-        eightButton = view.findViewById(R.id.buttonEightH);
-        nineButton = view.findViewById(R.id.buttonNineH);
-        zeroButton = view.findViewById(R.id.buttonZeroH);
+        Button oneButton = view.findViewById(R.id.button1H);
+        Button twoButton = view.findViewById(R.id.button2H);
+        Button threeButton = view.findViewById(R.id.button3H);
+        Button fourButton = view.findViewById(R.id.button4H);
+        Button fiveButton = view.findViewById(R.id.button5H);
+        Button sixButton = view.findViewById(R.id.button6H);
+        Button sevenButton = view.findViewById(R.id.button7H);
+        Button eightButton = view.findViewById(R.id.button8H);
+        Button nineButton = view.findViewById(R.id.button9H);
+        Button zeroButton = view.findViewById(R.id.buttonZeroH);
         aButton = view.findViewById(R.id.buttonA);
         bButton = view.findViewById(R.id.buttonB);
         cButton = view.findViewById(R.id.buttonC);
         dButton = view.findViewById(R.id.buttonD);
         eButton = view.findViewById(R.id.buttonE);
         fButton = view.findViewById(R.id.buttonF);
-        deleteButton = view.findViewById(R.id.buttonDeleteH);
-        minusButton = view.findViewById(R.id.buttonMinusH);
-        backButton = view.findViewById(R.id.buttonBackH);
-        forwardButton = view.findViewById(R.id.buttonForwardH);
+        Button deleteButton = view.findViewById(R.id.button_DeleteH);
+        Button minusButton = view.findViewById(R.id.buttonMinusH);
+        Button backButton = view.findViewById(R.id.buttonLeftH);
+        Button forwardButton = view.findViewById(R.id.buttonRightH);
 
+        // Initial setting of button text.
+        if(isUpperCase){
+            aButton.setText("A");
+            bButton.setText("B");
+            cButton.setText("C");
+            dButton.setText("D");
+            eButton.setText("E");
+            fButton.setText("F");
+        }
+
+        if(!isUpperCase){
+            aButton.setText("a");
+            bButton.setText("b");
+            cButton.setText("c");
+            dButton.setText("d");
+            eButton.setText("e");
+            fButton.setText("f");
+        }
 
         oneButton.setOnClickListener(this);
         twoButton.setOnClickListener(this);
@@ -96,67 +100,123 @@ public class HexKeyPad extends Fragment implements View.OnClickListener {
     }
 
 
+    public void setButtonCaseUpper(boolean boolValue) {
+        isUpperCase = boolValue;
+    }
+
+    public void changeButtonTextCase(){
+        if(isUpperCase){
+            aButton.setText("A");
+            bButton.setText("B");
+            cButton.setText("C");
+            dButton.setText("D");
+            eButton.setText("E");
+            fButton.setText("F");
+        }
+
+        if(!isUpperCase){
+            aButton.setText("a");
+            bButton.setText("b");
+            cButton.setText("c");
+            dButton.setText("d");
+            eButton.setText("e");
+            fButton.setText("f");
+        }
+    }
+
+
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.buttonOneH:
+            case R.id.button1H:
                 hexViewModel.insertHexDigit("1");
                 break;
-            case R.id.buttonTwoH:
+            case R.id.button2H:
                 hexViewModel.insertHexDigit("2");
                 break;
-            case R.id.buttonThreeH:
+            case R.id.button3H:
                 hexViewModel.insertHexDigit("3");
                 break;
-            case R.id.buttonFourH:
+            case R.id.button4H:
                 hexViewModel.insertHexDigit("4");
                 break;
-            case R.id.buttonFiveH:
+            case R.id.button5H:
                 hexViewModel.insertHexDigit("5");
                 break;
-            case R.id.buttonSixH:
+            case R.id.button6H:
                 hexViewModel.insertHexDigit("6");
                 break;
-            case R.id.buttonSevenH:
+            case R.id.button7H:
                 hexViewModel.insertHexDigit("7");
                 break;
-            case R.id.buttonEightH:
+            case R.id.button8H:
                 hexViewModel.insertHexDigit("8");
                 break;
-            case R.id.buttonNineH:
+            case R.id.button9H:
                 hexViewModel.insertHexDigit("9");
                 break;
             case R.id.buttonZeroH:
                 hexViewModel.insertHexDigit("0");
                 break;
             case R.id.buttonA:
-                hexViewModel.insertHexDigit("A");
+                if(isUpperCase){
+                    hexViewModel.insertHexDigit("A");
+                }
+                else {
+                    hexViewModel.insertHexDigit("a");
+                }
                 break;
             case R.id.buttonB:
-                hexViewModel.insertHexDigit("B");
+                if(isUpperCase){
+                    hexViewModel.insertHexDigit("B");
+                }
+                else {
+                    hexViewModel.insertHexDigit("b");
+                }
                 break;
             case R.id.buttonC:
-                hexViewModel.insertHexDigit("C");
+                if(isUpperCase){
+                    hexViewModel.insertHexDigit("C");
+                }
+                else {
+                    hexViewModel.insertHexDigit("c");
+                }
                 break;
             case R.id.buttonD:
-                hexViewModel.insertHexDigit("D");
+                if(isUpperCase){
+                    hexViewModel.insertHexDigit("D");
+                }
+                else {
+                    hexViewModel.insertHexDigit("d");
+                }
                 break;
             case R.id.buttonE:
-                hexViewModel.insertHexDigit("E");
+                if(isUpperCase){
+                    hexViewModel.insertHexDigit("E");
+                }
+                else {
+                    hexViewModel.insertHexDigit("e");
+                }
                 break;
             case R.id.buttonF:
-                hexViewModel.insertHexDigit("F");
+                if(isUpperCase){
+                    hexViewModel.insertHexDigit("F");
+                }
+                else {
+                    hexViewModel.insertHexDigit("f");
+                }
                 break;
             case R.id.buttonMinusH:
                 hexViewModel.insertHexDigit("-");
                 break;
-            case R.id.buttonDeleteH:
+            case R.id.button_DeleteH:
                 hexViewModel.insertHexDigit("Z");
                 break;
-            case R.id.buttonBackH:
+            case R.id.buttonLeftH:
                 hexViewModel.insertHexDigit("<");
                 break;
-            case R.id.buttonForwardH:
+            case R.id.buttonRightH:
                 hexViewModel.insertHexDigit(">");
                 break;
 

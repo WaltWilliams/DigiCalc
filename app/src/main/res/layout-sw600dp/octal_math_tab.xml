@@ -5,6 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorWhite"
+    android:clickable="true"
+    android:contentDescription="@string/operator_choice"
+    android:focusable="true"
     tools:context=".OctMathTab">
 
 
@@ -129,6 +132,7 @@
         android:layout_marginTop="32dp"
         android:layout_marginEnd="16dp"
         android:backgroundTint="@color/colorDevilRed"
+        android:contentDescription="@string/execute"
         android:text="@string/execute"
         android:textAllCaps="false"
         android:textColor="@color/colorYellow"
@@ -142,6 +146,7 @@
         android:layout_height="75dp"
         android:layout_marginTop="64dp"
         android:backgroundTint="@color/colorDevilRed"
+        android:contentDescription="@string/clear_fields"
         android:text="@string/clear"
         android:textAllCaps="false"
         android:textColor="@color/colorYellow"

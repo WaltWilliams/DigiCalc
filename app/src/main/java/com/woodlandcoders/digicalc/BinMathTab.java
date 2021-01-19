@@ -135,7 +135,15 @@ public class BinMathTab extends Fragment implements AdapterView.OnItemSelectedLi
                     isArrow = true;
                 }
 
-                if(editText1.length() < 64 | isMinus | isBackSpace | isArrow) {
+                // Theses if statement insures that if you start with a minus sign you can still
+                // enter a full 16 digits
+                int wNumberOfDigitsFor64 = 64;
+                if(editText1.length() > 0) {
+                    if(editText1.getText().charAt(0) == '-'){
+                        wNumberOfDigitsFor64 = 65;
+                    }
+                }
+                if(editText1.length() < wNumberOfDigitsFor64 | isMinus | isBackSpace | isArrow) {
                     if (editText1.isFocused()) {
                         cursorPosition = editText1.getSelectionStart();
                         CharSequence et1 = editText1.getText();
@@ -148,7 +156,12 @@ public class BinMathTab extends Fragment implements AdapterView.OnItemSelectedLi
                         binCtField1.setText(countVal1);
                     }
                 }
-                if(editText2.length() < 64| isMinus | isBackSpace | isArrow){
+                if(editText1.length() > 0) {
+                    if(editText1.getText().charAt(0) == '-'){
+                        wNumberOfDigitsFor64 = 65;
+                    }
+                }
+                if(editText2.length() < wNumberOfDigitsFor64| isMinus | isBackSpace | isArrow){
                     if (editText2.isFocused()) {
                         cursorPosition = editText2.getSelectionStart();
                         String et2 = editText2.getText().toString();

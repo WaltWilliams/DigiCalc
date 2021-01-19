@@ -1,5 +1,6 @@
 package com.woodlandcoders.digicalc;
 
+import android.content.Context;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -19,7 +20,15 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
-
+import org.json.JSONException;
+import org.json.JSONObject;
+import java.io.File;
+import java.io.OutputStreamWriter;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.Objects;
 
 
@@ -36,6 +45,7 @@ public class HexMathTab extends Fragment implements AdapterView.OnItemSelectedLi
     private TextView hexCtField1;
     private TextView hexCtField2;
     private boolean isCheckBoxChecked;
+    private Boolean wChoice = null;
 
 
     public HexMathTab() {
@@ -52,9 +62,9 @@ public class HexMathTab extends Fragment implements AdapterView.OnItemSelectedLi
 
         // Inserting keyboard fragment.
         // The Child Fragment.
-        HexKeyPad hexKeyPad = new HexKeyPad();
+        final HexKeyPad wHexKeyPad = new HexKeyPad();
         FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
-        transaction.add(R.id.hexKeyFrame, hexKeyPad).commit();
+        transaction.add(R.id.hexKeyFrame, wHexKeyPad).commit();
 
         Button execButton = view.findViewById(R.id.hexButton);
         Button clr = view.findViewById(R.id.hexClearFieldButton);
@@ -75,23 +85,86 @@ public class HexMathTab extends Fragment implements AdapterView.OnItemSelectedLi
         hexCtField2.setText(R.string.zero16);
 
 
+        // This section of code from this line to the next line was added to Jan-21.
+        // This adds the Caps-lock feature on the Hexadecimal tab.
+        // ======================================================================================
+        // Reading the stored upper or lower case wChoice.
+        // Stored in a json file in this app's internal memory.
+        final Context wContext = getContext();
+
+        InputStreamReader wISR = null;
+        try {
+            InputStream wIS = wContext.openFileInput(getResources().getString(R.string.jsonFilename));
+            wISR = new InputStreamReader(wIS);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        
+        try {
+            BufferedReader bf =new BufferedReader(wISR);
+            JSONObject wJO = new JSONObject(bf.readLine());
+            wChoice = wJO.getBoolean("caps");
+        } catch (JSONException | IOException e) {
+            e.printStackTrace();
+        }
+
+
         // Check Box event handler.
         CheckBox wCB = view.findViewById(R.id.capsCheckBox);
+        wCB.setChecked(wChoice);
+        wHexKeyPad.setButtonCaseUpper(wChoice);
         wCB.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(!isChecked){
                     editText1.setText(upperCaseToLower(editText1.getText().toString()));
                     editText2.setText(upperCaseToLower(editText2.getText().toString()));
+                    if(resultTextView.length() > 0){
+                        resultTextView.setText(upperCaseToLower(resultTextView.getText().toString()));
+                    }
                     isCheckBoxChecked = false;
+                    wHexKeyPad.setButtonCaseUpper(false);
+                    wHexKeyPad.changeButtonTextCase();
+                    wChoice = false;
                 }
                 if(isChecked){
                     editText1.setText(lowerCaseToUpper(editText1.getText().toString()));
                     editText2.setText(lowerCaseToUpper(editText2.getText().toString()));
+                    if(resultTextView.length() > 0){
+                        resultTextView.setText(lowerCaseToUpper(resultTextView.getText().toString()));
+                    }
                     isCheckBoxChecked = true;
+                    wHexKeyPad.setButtonCaseUpper(true);
+                    wHexKeyPad.changeButtonTextCase();
+                    wChoice = true;
+                }
+
+                // When the CheckBox is clicked and its state changes, the new state
+                // needs to be stored so that when the apps
+                JSONObject jo = new JSONObject();
+                File choiceStorageFile = getContext().getFileStreamPath(getResources().getString(R.string.jsonFilename));
+                if(choiceStorageFile.exists()){
+                    OutputStreamWriter osw = null;
+                    try {
+                        osw = new OutputStreamWriter(wContext.openFileOutput(getResources().getString(R.string.jsonFilename), Context.MODE_PRIVATE));
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    }
+                    try {
+                        jo.put("caps", wChoice);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    try {
+                        osw.write(jo.toString());
+                        osw.flush();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         });
+        // ======================================================================================
 
 
         // This is where the math is performed.
@@ -179,7 +252,7 @@ public class HexMathTab extends Fragment implements AdapterView.OnItemSelectedLi
                         charSequence == "D" ||
                         charSequence == "E" ||
                         charSequence == "F" ||
-                        charSequence == "a" ||
+                        charSequence == "a" ||  // Added Jan2021
                         charSequence == "b" ||
                         charSequence == "c" ||
                         charSequence == "d" ||
@@ -188,13 +261,22 @@ public class HexMathTab extends Fragment implements AdapterView.OnItemSelectedLi
                     isValue = true;
                 }
 
-                // the DataContainer is a home spun class. It uses a data structure to the left.
+                // the "DataContainer" is a home spun class. It is a data structure. Look to the left.
                 // -------------------------------------------------------------------------------
                 // This section of code provides adds the functionality to the EditText for the
                 // arrow, backspace keys and places the minus sign to the far left no matter
                 // where the cursor location when the minus key is tapped. It also prevents
                 // digits from being placed to the left of the minus sign.
-                if(editText1.length() < 16 | isMinus | isBackSpace | isArrow) {
+
+                // Theses if statement insures that if you start with a minus sign you can still
+                // enter a full 16 digits
+                int wNumberOfDigitsFor64 = 16;
+                if(editText1.length() > 0) {
+                    if(editText1.getText().charAt(0) == '-'){
+                        wNumberOfDigitsFor64 = 17;
+                    }
+                }
+                if(editText1.length() < wNumberOfDigitsFor64 | isMinus | isBackSpace | isArrow) {
                     if (editText1.isFocused()) {
                         cp = editText1.getSelectionStart();
                         CharSequence et1 = editText1.getText();
@@ -206,8 +288,13 @@ public class HexMathTab extends Fragment implements AdapterView.OnItemSelectedLi
                         String countVal1 = editText1.getSelectionStart() + getString(R.string.slash16);
                         hexCtField1.setText(countVal1);
                     }
+                    if(editText2.length() > 0) {
+                        if(editText2.getText().charAt(0) == '-'){
+                            wNumberOfDigitsFor64 = 17;
+                        }
+                    }
                 }
-                if(editText2.length() < 16 | isMinus | isBackSpace | isArrow){
+                if(editText2.length() < wNumberOfDigitsFor64 | isMinus | isBackSpace | isArrow){
                     if (editText2.isFocused()) {
                         cp = editText2.getSelectionStart();
                         String et2 = editText2.getText().toString();

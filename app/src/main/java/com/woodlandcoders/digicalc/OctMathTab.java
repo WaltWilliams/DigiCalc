@@ -144,7 +144,13 @@ public class OctMathTab extends Fragment implements AdapterView.OnItemSelectedLi
                     isValue = true;
                 }
 
-                if(editText1.length() < 22 | isMinus | isBackSpace | isArrow) {
+                int wNumberOfDigitsFor64 = 22;
+                if(editText1.length() > 0) {
+                    if(editText1.getText().charAt(0) == '-'){
+                        wNumberOfDigitsFor64 = 23;
+                    }
+                }
+                if(editText1.length() < wNumberOfDigitsFor64 | isMinus | isBackSpace | isArrow) {
                     if (editText1.isFocused()) {
                         cp = editText1.getSelectionStart();
                         CharSequence et1 = editText1.getText();
@@ -157,7 +163,12 @@ public class OctMathTab extends Fragment implements AdapterView.OnItemSelectedLi
                         octCtField1.setText(countVal1);
                     }
                 }
-                if(editText2.length() < 22 | isMinus | isBackSpace | isArrow) {
+                if(editText1.length() > 0) {
+                    if(editText1.getText().charAt(0) == '-'){
+                        wNumberOfDigitsFor64 = 23;
+                    }
+                }
+                if(editText2.length() < wNumberOfDigitsFor64 | isMinus | isBackSpace | isArrow) {
                     if (editText2.isFocused()) {
                         cp = editText2.getSelectionStart();
                         String et2 = editText2.getText().toString();

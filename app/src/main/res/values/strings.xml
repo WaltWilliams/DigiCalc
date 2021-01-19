@@ -1,4 +1,7 @@
 <resources>
+    <!-- JSON filename. -->
+    <string name="jsonFilename">DigiCalc.json</string>
+
     <!-- Tab titles -->
     <string name="app_name">DigiCalc</string>
     <string name="tab_text_0">Home</string>
@@ -114,5 +117,12 @@
         </p>
         ]]>
     </string>
+    <string name="operator_choice">operator choice</string>
+    <string name="clear_fields">clear fields</string>
+    <string name="back_arrow">back arrow</string>
+    <string name="delete_digit">delete digit</string>
+    <string name="forward_arrow">forward arrow</string>
+    <string name="minus_sign">minus sign</string>
+    <string name="caps_lock">caps lock</string>
 
 </resources>
