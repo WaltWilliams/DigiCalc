@@ -17,8 +17,38 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a56571eb-dd8b-40b6-872e-6ee1243dec9d" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_core_1_3_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_espresso_espresso_core_3_3_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_espresso_espresso_idling_resource_3_3_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_ext_junit_1_1_2_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_monitor_1_3_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_runner_1_3_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_code_findbugs_jsr305_2_0_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_javawriter_2_1_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__javax_inject_javax_inject_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_hamcrest_hamcrest_integration_1_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_hamcrest_hamcrest_library_1_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/edit_text_cursor.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/custom_spinner_layout.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/app/DigiCalc.app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/app/DigiCalc.app.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/woodlandcoders/digicalc/BinMathTab.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/woodlandcoders/digicalc/BinMathTab.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/woodlandcoders/digicalc/CommonUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/woodlandcoders/digicalc/CommonUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/woodlandcoders/digicalc/HexMathTab.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/woodlandcoders/digicalc/HexMathTab.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/woodlandcoders/digicalc/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/woodlandcoders/digicalc/MainActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/woodlandcoders/digicalc/OctMathTab.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/woodlandcoders/digicalc/OctMathTab.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout-land/bin_math_tab.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout-land/bin_math_tab.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout-land/hex_math_tab.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout-land/hex_math_tab.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout-land/octal_math_tab.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout-land/octal_math_tab.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout-sw600dp/bin_math_tab.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout-sw600dp/bin_math_tab.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout-sw600dp/hex_math_tab.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout-sw600dp/hex_math_tab.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout-sw600dp/octal_math_tab.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout-sw600dp/octal_math_tab.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/bin_math_tab.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/bin_math_tab.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/hex_math_tab.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/hex_math_tab.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/octal_math_tab.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/octal_math_tab.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/styles.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/styles.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,8 +86,9 @@
       <list>
         <option value="Singleton" />
         <option value="layoutResourceFile_vertical" />
-        <option value="layoutResourceFile" />
         <option value="Class" />
+        <option value="layoutResourceFile" />
+        <option value="resourceFile" />
       </list>
     </option>
   </component>
@@ -93,7 +124,7 @@
     <property name="project.structure.proportion" value="0.17" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.language" />
   </component>
   <component name="PsdUISettings">
     <option name="MODULE_TAB" value="Signing Configs" />
@@ -280,21 +311,80 @@
       <screen x="0" y="0" width="2560" height="1414" />
     </state>
     <state x="875" y="369" width="802" height="683" key="#Template_Data_Languages/0.0.2560.1414@0.0.2560.1414" timestamp="1609877046369" />
+    <state x="968" y="316" width="615" height="789" key="#app" timestamp="1610976850607">
+      <screen x="0" y="0" width="2560" height="1414" />
+    </state>
+    <state x="968" y="316" width="615" height="789" key="#app/0.0.2560.1414@0.0.2560.1414" timestamp="1610976850607" />
     <state x="959" y="447" width="626" height="526" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1609886744412">
       <screen x="0" y="0" width="2560" height="1414" />
     </state>
     <state x="959" y="447" width="626" height="526" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.2560.1414@0.0.2560.1414" timestamp="1609886744412" />
+    <state x="647" y="194" width="1287" height="544" key="AVDManager" timestamp="1611007212172">
+      <screen x="0" y="0" width="2560" height="1414" />
+    </state>
+    <state x="647" y="194" width="1287" height="544" key="AVDManager/0.0.2560.1414@0.0.2560.1414" timestamp="1611007212172" />
+    <state x="863" y="465" width="826" height="490" key="AndroidCreateResourceFileDialog" timestamp="1611011661437">
+      <screen x="0" y="0" width="2560" height="1414" />
+    </state>
+    <state x="863" y="465" width="826" height="490" key="AndroidCreateResourceFileDialog/0.0.2560.1414@0.0.2560.1414" timestamp="1611011661437" />
+    <state x="1100" y="497" width="352" height="427" key="AndroidCreateXmlResourceDialog" timestamp="1611015936939">
+      <screen x="0" y="0" width="2560" height="1414" />
+    </state>
+    <state x="1100" y="497" width="352" height="427" key="AndroidCreateXmlResourceDialog/0.0.2560.1414@0.0.2560.1414" timestamp="1611015936939" />
     <state x="1050" y="452" width="451" height="516" key="FileChooserDialogImpl" timestamp="1609877217770">
       <screen x="0" y="0" width="2560" height="1414" />
     </state>
     <state x="1050" y="452" width="451" height="516" key="FileChooserDialogImpl/0.0.2560.1414@0.0.2560.1414" timestamp="1609877217770" />
-    <state x="776" y="342" width="1549" height="923" key="SettingsEditor" timestamp="1609887210236">
+    <state width="2518" height="406" key="GridCell.Tab.0.bottom" timestamp="1611025840228">
       <screen x="0" y="0" width="2560" height="1414" />
     </state>
-    <state x="776" y="342" width="1549" height="923" key="SettingsEditor/0.0.2560.1414@0.0.2560.1414" timestamp="1609887210236" />
+    <state width="2518" height="406" key="GridCell.Tab.0.bottom/0.0.2560.1414@0.0.2560.1414" timestamp="1611025840228" />
+    <state width="2518" height="406" key="GridCell.Tab.0.center" timestamp="1611025840228">
+      <screen x="0" y="0" width="2560" height="1414" />
+    </state>
+    <state width="2518" height="406" key="GridCell.Tab.0.center/0.0.2560.1414@0.0.2560.1414" timestamp="1611025840228" />
+    <state width="2518" height="406" key="GridCell.Tab.0.left" timestamp="1611025840228">
+      <screen x="0" y="0" width="2560" height="1414" />
+    </state>
+    <state width="2518" height="406" key="GridCell.Tab.0.left/0.0.2560.1414@0.0.2560.1414" timestamp="1611025840228" />
+    <state width="2518" height="406" key="GridCell.Tab.0.right" timestamp="1611025840228">
+      <screen x="0" y="0" width="2560" height="1414" />
+    </state>
+    <state width="2518" height="406" key="GridCell.Tab.0.right/0.0.2560.1414@0.0.2560.1414" timestamp="1611025840228" />
+    <state width="2518" height="406" key="GridCell.Tab.1.bottom" timestamp="1611025840228">
+      <screen x="0" y="0" width="2560" height="1414" />
+    </state>
+    <state width="2518" height="406" key="GridCell.Tab.1.bottom/0.0.2560.1414@0.0.2560.1414" timestamp="1611025840228" />
+    <state width="2518" height="406" key="GridCell.Tab.1.center" timestamp="1611025840228">
+      <screen x="0" y="0" width="2560" height="1414" />
+    </state>
+    <state width="2518" height="406" key="GridCell.Tab.1.center/0.0.2560.1414@0.0.2560.1414" timestamp="1611025840228" />
+    <state width="2518" height="406" key="GridCell.Tab.1.left" timestamp="1611025840228">
+      <screen x="0" y="0" width="2560" height="1414" />
+    </state>
+    <state width="2518" height="406" key="GridCell.Tab.1.left/0.0.2560.1414@0.0.2560.1414" timestamp="1611025840228" />
+    <state width="2518" height="406" key="GridCell.Tab.1.right" timestamp="1611025840228">
+      <screen x="0" y="0" width="2560" height="1414" />
+    </state>
+    <state width="2518" height="406" key="GridCell.Tab.1.right/0.0.2560.1414@0.0.2560.1414" timestamp="1611025840228" />
+    <state x="776" y="342" width="1549" height="923" key="SettingsEditor" timestamp="1610976825237">
+      <screen x="0" y="0" width="2560" height="1414" />
+    </state>
+    <state x="776" y="342" width="1549" height="923" key="SettingsEditor/0.0.2560.1414@0.0.2560.1414" timestamp="1610976825237" />
     <state x="959" y="535" key="com.intellij.ide.util.TipDialog" timestamp="1609886695339">
       <screen x="0" y="0" width="2560" height="1414" />
     </state>
     <state x="959" y="535" key="com.intellij.ide.util.TipDialog/0.0.2560.1414@0.0.2560.1414" timestamp="1609886695339" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/woodlandcoders/digicalc/HexMathTab.java</url>
+          <line>116</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

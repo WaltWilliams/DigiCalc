@@ -76,7 +76,7 @@ public class BinMathTab extends Fragment implements AdapterView.OnItemSelectedLi
 
         // Spinner functionality stuff.
         binSp = view.findViewById(R.id.binSp);
-        ArrayAdapter<CharSequence> adapter  = ArrayAdapter.createFromResource(Objects.requireNonNull(this.getActivity()), R.array.operators, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapter  = ArrayAdapter.createFromResource(Objects.requireNonNull(this.getActivity()), R.array.operators, R.layout.custom_spinner_layout);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         binSp.setAdapter(adapter);
         binSp.setOnItemSelectedListener(this);

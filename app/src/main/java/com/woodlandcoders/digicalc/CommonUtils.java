@@ -19,47 +19,63 @@ public class CommonUtils {
 
     public final DataContainer container = new DataContainer();
 
-    public DataContainer etBehavior(CharSequence cs, CharSequence et1, int cp, boolean isMinus, boolean isValue, boolean isBackSpace){
-        StringBuilder sb = new StringBuilder(et1);
+    public DataContainer etBehavior(CharSequence wCharIn, CharSequence wCharString, int wCursorPosition, boolean wIsMinus, boolean wIsValue, boolean wIsBackSpace){
+        StringBuilder sb = new StringBuilder(wCharString);
         // Inserting or removing a minus sign. This must
         // always be at the left end of the string.
-        if(isMinus){
+        if(wIsMinus){
             if(sb.length() == 0){
-                sb.append(cs);
-                cp++;
+                sb.append(wCharIn);
+                wCursorPosition++;
             }
             else if(sb.charAt(0) != '-'){
                 sb.insert(0, '-');
-                cp++;
+                wCursorPosition++;
             }
             else if(sb.charAt(0) == '-'){
                 sb.replace(0, 1, "");
-                if(cp > 0){
-                    cp--;
+                if(wCursorPosition > 0){
+                    wCursorPosition--;
                 }
             }
         }
 
-        // Delete button and value insertion controls.
-        if(cp >= 0 &  isValue){
-            sb.insert(cp, cs);
-            cp++;
+        // This block of code is to fix a glitch. If the cursor is arrowed
+        // over to the left side of a minus sign you would still be able
+        // to enter digits. This code moves the cursor to the right,
+        // so the digit can be entered on the correct side of the minus sign.
+        if(wIsValue){
+            if(wCharString.length() > 0){
+                if(wCharString.charAt(0) == '-'){
+                    if(wCursorPosition == 0){
+                        wCursorPosition = 1;
+                    }
+                }
+            }
         }
-        else if(cp > 0 & isBackSpace){
-            cp--;
-            sb.deleteCharAt(cp);
+
+
+
+        // Delete button and value insertion controls.
+        if(wCursorPosition >= 0 &  wIsValue){
+            sb.insert(wCursorPosition, wCharIn);
+            wCursorPosition++;
+        }
+        else if(wCursorPosition > 0 & wIsBackSpace){
+            wCursorPosition--;
+            sb.deleteCharAt(wCursorPosition);
         }
 
         // Back and forward button controls.
-        if(cs == "<" & cp > 0){
-            cp--;
+        if(wCharIn == "<" & wCursorPosition > 0){
+            wCursorPosition--;
         }
-        if(cs == ">" & cp < sb.length()){
-            cp++;
+        if(wCharIn == ">" & wCursorPosition < sb.length()){
+            wCursorPosition++;
         }
 
         container.cs = sb;  // Return the StringBuilder content. Not what was passed in.
-        container.pos = cp;
+        container.pos = wCursorPosition;
 
         return container;
     }

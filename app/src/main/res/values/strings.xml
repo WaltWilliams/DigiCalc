@@ -31,6 +31,7 @@
     <string name="forward">&gt;</string>
     <string name="field1">Field 1</string>
     <string name="field2">Field 2</string>
+    <string name="caps">Caps</string>
 
     <!-- Operator dropdown -->
     <string-array name="operators">
@@ -113,4 +114,5 @@
         </p>
         ]]>
     </string>
+
 </resources>

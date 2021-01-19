@@ -14,6 +14,8 @@ import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -33,6 +35,7 @@ public class HexMathTab extends Fragment implements AdapterView.OnItemSelectedLi
     private TextView resultTextView;
     private TextView hexCtField1;
     private TextView hexCtField2;
+    private boolean isCheckBoxChecked;
 
 
     public HexMathTab() {
@@ -72,9 +75,30 @@ public class HexMathTab extends Fragment implements AdapterView.OnItemSelectedLi
         hexCtField2.setText(R.string.zero16);
 
 
+        // Check Box event handler.
+        CheckBox wCB = view.findViewById(R.id.capsCheckBox);
+        wCB.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(!isChecked){
+                    editText1.setText(upperCaseToLower(editText1.getText().toString()));
+                    editText2.setText(upperCaseToLower(editText2.getText().toString()));
+                    isCheckBoxChecked = false;
+                }
+                if(isChecked){
+                    editText1.setText(lowerCaseToUpper(editText1.getText().toString()));
+                    editText2.setText(lowerCaseToUpper(editText2.getText().toString()));
+                    isCheckBoxChecked = true;
+                }
+            }
+        });
+
+
+        // This is where the math is performed.
+        // ===============================================================================
         // Spinner functionality stuff.
         hexSp = view.findViewById(R.id.hexSp);
-        ArrayAdapter<CharSequence> adapter  = ArrayAdapter.createFromResource(Objects.requireNonNull(this.getActivity()), R.array.operators, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapter  = ArrayAdapter.createFromResource(Objects.requireNonNull(this.getActivity()), R.array.operators, R.layout.custom_spinner_layout);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         hexSp.setAdapter(adapter);
         hexSp.setOnItemSelectedListener(this);
@@ -88,7 +112,15 @@ public class HexMathTab extends Fragment implements AdapterView.OnItemSelectedLi
 
                 String s1 = String.valueOf(editText1.getText());
                 String s2 = String.valueOf(editText2.getText());
-                resultTextView.setText(maths.hexMath(s1, s2, selection));
+                // If the checkbox is not checked convert from lower case to upper case and go.
+                if(!isCheckBoxChecked){
+                    s1 = lowerCaseToUpper(s1);
+                    s2 = lowerCaseToUpper(s2);
+                    resultTextView.setText(upperCaseToLower(maths.hexMath(s1, s2, selection)));
+                }
+                if(isCheckBoxChecked){
+                    resultTextView.setText(maths.hexMath(s1, s2, selection));
+                }
             }
         });
 
@@ -109,7 +141,6 @@ public class HexMathTab extends Fragment implements AdapterView.OnItemSelectedLi
 
 
     private int cp = 0; // Related to the code just below. "cursor position"
-
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -147,10 +178,22 @@ public class HexMathTab extends Fragment implements AdapterView.OnItemSelectedLi
                         charSequence == "C" ||
                         charSequence == "D" ||
                         charSequence == "E" ||
-                        charSequence == "F"){
+                        charSequence == "F" ||
+                        charSequence == "a" ||
+                        charSequence == "b" ||
+                        charSequence == "c" ||
+                        charSequence == "d" ||
+                        charSequence == "e" ||
+                        charSequence == "f"){
                     isValue = true;
                 }
 
+                // the DataContainer is a home spun class. It uses a data structure to the left.
+                // -------------------------------------------------------------------------------
+                // This section of code provides adds the functionality to the EditText for the
+                // arrow, backspace keys and places the minus sign to the far left no matter
+                // where the cursor location when the minus key is tapped. It also prevents
+                // digits from being placed to the left of the minus sign.
                 if(editText1.length() < 16 | isMinus | isBackSpace | isArrow) {
                     if (editText1.isFocused()) {
                         cp = editText1.getSelectionStart();
@@ -180,6 +223,56 @@ public class HexMathTab extends Fragment implements AdapterView.OnItemSelectedLi
             }
         });
         hexViewModel.insertHexDigit("");
+    }
+
+
+
+
+    private String upperCaseToLower(String str){
+        StringBuilder sb = new StringBuilder();
+        for(int i = 0; i < str.length(); i++){
+            if(str.charAt(i) == 'A'){
+                sb.append('a');
+            }else if(str.charAt(i) == 'B'){
+                sb.append('b');
+            }else if(str.charAt(i) == 'C'){
+                sb.append('c');
+            }else if(str.charAt(i) == 'D'){
+                sb.append('d');
+            }else if(str.charAt(i) == 'E'){
+                sb.append('e');
+            }else if(str.charAt(i) == 'F'){
+                sb.append('f');
+            }
+            else{
+                sb.append(str.charAt(i));
+            }
+        }
+        return sb.toString();
+    }
+
+
+    private String lowerCaseToUpper(String str){
+        StringBuilder sb = new StringBuilder();
+        for(int i = 0; i < str.length(); i++){
+            if(str.charAt(i) == 'a'){
+                sb.append('A');
+            }else if(str.charAt(i) == 'b'){
+                sb.append('B');
+            }else if(str.charAt(i) == 'c'){
+                sb.append('C');
+            }else if(str.charAt(i) == 'd'){
+                sb.append('D');
+            }else if(str.charAt(i) == 'e'){
+                sb.append('E');
+            }else if(str.charAt(i) == 'f'){
+                sb.append('F');
+            }
+            else{
+                sb.append(str.charAt(i));
+            }
+        }
+        return sb.toString();
     }
 
 
